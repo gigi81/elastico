@@ -59,6 +59,8 @@
     <Compile Include="ElasticCmdLet.cs" />
     <Compile Include="ElastichSearch.cs" />
     <Compile Include="ElasticNodeInfo.cs" />
+    <Compile Include="NestExtensions.cs" />
+    <Compile Include="RepositoryCmdLets\ElasticGetRepositorySettings.cs" />
     <Compile Include="RepositoryCmdLets\ElasticGetRepository.cs" />
     <Compile Include="ElasticSnapshot.cs" />
     <Compile Include="Extensions.cs" />
@@ -66,10 +68,13 @@
     <Compile Include="IndexCmdLets\ElasticRemoveIndex.cs" />
     <Compile Include="IndexCmdLets\ElasticGetIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryCmdLets\ElasticNewRepositoryFileSystem.cs" />
+    <Compile Include="RepositoryCmdLets\ElasticRemoveRepository.cs" />
     <Compile Include="Types\Cluster.cs" />
     <Compile Include="Types\Health.cs" />
     <Compile Include="Types\Index.cs" />
     <Compile Include="Types\Node.cs" />
+    <Compile Include="Types\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ElasticsearchPowershell.psd1" />

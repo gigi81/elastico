@@ -3,9 +3,14 @@ $nodes = @(
     "http://localhost:9200"
 )
 
-Get-ElasticClusterHealt -Verbose
+# Get-ElasticClusterHealt -Verbose
 
-Get-ElasticClusterHealt -Index ".kibana" -Verbose
+# Get-ElasticClusterHealt -Index ".kibana" -Verbose
+
+# \\\\WIN2012\\Backup\\
+# New-ElasticRepositoryFileSystem -Name "test1" -Location "test1" -Compress $true -Verbose
+
+Get-ElasticRepositorySettings
 
 # Get-ElasticNode
 
