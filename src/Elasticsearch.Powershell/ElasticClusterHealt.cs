@@ -6,12 +6,23 @@ using Nest;
 
 namespace Elasticsearch.Powershell
 {
-    [Cmdlet(VerbsCommon.Get, "ElasticCluster")]
-    public class ElasticCluster : ElasticCmdlet
+    [Cmdlet(VerbsCommon.Get, "ElasticClusterHealt")]
+    public class ElasticClusterHealt : ElasticCmdlet
     {
+        [Parameter(Position = 1, Mandatory = false, HelpMessage = "One or more index name(s). You can use the wildcard '*' in the name.")]
+        public string[] Index { get; set; }
+
+        private Indices GetIndices()
+        {
+            if (this.Index == null || this.Index.Length == 0)
+                return Indices.All;
+
+            return Indices.Parse(String.Join(",", this.Index));
+        }
+
         protected override void ProcessRecord()
         {
-            var health = this.Client.ClusterHealth();
+            var health = this.Client.ClusterHealth(h => h.Index(this.GetIndices()));
             this.CheckResponse(health);
 
             WriteObject(new Types.Cluster

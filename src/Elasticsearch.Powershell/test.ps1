@@ -3,13 +3,15 @@ $nodes = @(
     "http://localhost:9200"
 )
 
-# Get-ElasticCluster -Verbose
+Get-ElasticClusterHealt -Verbose
+
+Get-ElasticClusterHealt -Index ".kibana" -Verbose
 
 # Get-ElasticNode
 
-Get-ElasticCluster | Get-ElasticNode
+# Get-ElasticClusterHealt | Get-ElasticNode
 
-#Get-ElasticClusterHealth "localhost:9200" -Verbose
+#Get-ElasticClusterHealtHealth "localhost:9200" -Verbose
 
 #Get-ElasticIndicesHealth
 

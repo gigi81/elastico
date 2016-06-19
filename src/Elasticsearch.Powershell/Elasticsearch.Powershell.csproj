@@ -55,20 +55,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElasticCluster.cs" />
+    <Compile Include="ElasticClusterHealt.cs" />
     <Compile Include="ElasticCmdLet.cs" />
     <Compile Include="ElastichSearch.cs" />
-    <Compile Include="ElasticNode.cs" />
+    <Compile Include="ElasticNodeInfo.cs" />
     <Compile Include="RepositoryCmdLets\ElasticGetRepository.cs" />
     <Compile Include="ElasticSnapshot.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="HealtCmdLet\ElasticIndicesHealth.cs" />
-    <Compile Include="HealtCmdLet\ElasticClusterHealth.cs" />
     <Compile Include="IndexCmdLets\ElasticNewIndex.cs" />
     <Compile Include="IndexCmdLets\ElasticRemoveIndex.cs" />
     <Compile Include="IndexCmdLets\ElasticGetIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\Cluster.cs" />
+    <Compile Include="Types\Health.cs" />
     <Compile Include="Types\Index.cs" />
     <Compile Include="Types\Node.cs" />
   </ItemGroup>

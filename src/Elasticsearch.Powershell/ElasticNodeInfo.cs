@@ -3,8 +3,8 @@ using System.Management.Automation;
 
 namespace Elasticsearch.Powershell
 {
-    [Cmdlet(VerbsCommon.Get, "ElasticNode")]
-    public class ElasticNode : ElasticCmdlet
+    [Cmdlet(VerbsCommon.Get, "ElasticNodeInfo")]
+    public class ElasticNodeInfo : ElasticCmdlet
     {
         [Parameter(ValueFromPipeline = true)]
         public Types.Cluster InputObject { get; set; }
