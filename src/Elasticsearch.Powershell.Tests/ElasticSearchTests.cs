@@ -12,7 +12,7 @@ namespace Elasticsearch.Powershell.Tests
         [Fact]
         public void Test()
         {
-            var cmdlet = new ElastichSearch();
+            var cmdlet = new ElasticSearch();
             cmdlet.Fields = new[] { "EventID" };
             var enumerator = cmdlet.Invoke().GetEnumerator();
 

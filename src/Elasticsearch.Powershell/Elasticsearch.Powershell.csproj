@@ -60,7 +60,7 @@
     <Compile Include="SnapshotCmdLets\ElasticRemoveSnapshot.cs" />
     <Compile Include="SnapshotCmdLets\ElasticNewSnapshot.cs" />
     <Compile Include="SnapshotCmdLets\ElasticGetSnapshot.cs" />
-    <Compile Include="ElastichSearch.cs" />
+    <Compile Include="ElasticSearch.cs" />
     <Compile Include="ElasticNodeInfo.cs" />
     <Compile Include="NestExtensions.cs" />
     <Compile Include="RepositoryCmdLets\ElasticGetRepositorySettings.cs" />

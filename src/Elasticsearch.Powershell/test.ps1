@@ -14,7 +14,7 @@ $nodes = @(
 
 # New-ElasticSnapshot -Repository "test1" -Name "snap1"
 
-Get-ElasticSnapshot -Repository "test1"
+# Get-ElasticSnapshot -Repository "test1"
 
 # Get-ElasticNode
 
@@ -38,6 +38,6 @@ Get-ElasticSnapshot -Repository "test1"
 
 #Search-Elastic -Index "logstash-*" -Query "EventID: 7036" -Size 2 -Verbose
 
-#Search-Elastic -Nodes $nodes -Query "EventID: 7036" -Fields @("Hostname", "EventID", "Version") -Verbose
+Search-Elastic -Nodes $nodes -Query "EventID: 7036" -Fields @("Hostname", "EventID", "Version") -Verbose
 
 #Search-Elastic -Nodes $nodes -Query "EventID: 7036" -Fields "Hostname,EventID" -Verbose

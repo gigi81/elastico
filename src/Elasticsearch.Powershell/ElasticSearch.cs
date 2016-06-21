@@ -10,9 +10,9 @@ using Nest;
 namespace Elasticsearch.Powershell
 {
     [Cmdlet(VerbsCommon.Search, "Elastic")]
-    public class ElastichSearch : ElasticCmdlet
+    public class ElasticSearch : ElasticCmdlet
     {
-        public ElastichSearch()
+        public ElasticSearch()
         {
             this.Size = 100;
         }
@@ -71,9 +71,9 @@ namespace Elasticsearch.Powershell
             }
 
             var include = GetFields(this.Fields);
-            if(include != null)
+            if (include != null)
                 request.Source = new SourceFilter { Include = include };
-            
+
             var search = this.Client.Search<ExpandoObject>(request);
             this.CheckResponse(search);
 
