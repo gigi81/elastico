@@ -10,7 +10,11 @@ $nodes = @(
 # \\\\WIN2012\\Backup\\
 # New-ElasticRepositoryFileSystem -Name "test1" -Location "test1" -Compress $true -Verbose
 
-Get-ElasticRepositorySettings
+# Get-ElasticRepositorySettings
+
+# New-ElasticSnapshot -Repository "test1" -Name "snap1"
+
+Get-ElasticSnapshot -Repository "test1"
 
 # Get-ElasticNode
 

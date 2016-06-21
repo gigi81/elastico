@@ -4,7 +4,7 @@ using Nest;
 
 namespace Elasticsearch.Powershell.RepositoryCmdLets
 {
-    [Cmdlet(VerbsCommon.Remove, "ElasticRepository")]
+    [Cmdlet(VerbsCommon.Remove, "ElasticRepository", ConfirmImpact = ConfirmImpact.Medium)]
     public class ElasticRemoveRepository : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = true, HelpMessage = "The name(s) of the repository to delete")]

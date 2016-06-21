@@ -57,12 +57,14 @@
   <ItemGroup>
     <Compile Include="ElasticClusterHealt.cs" />
     <Compile Include="ElasticCmdLet.cs" />
+    <Compile Include="SnapshotCmdLets\ElasticRemoveSnapshot.cs" />
+    <Compile Include="SnapshotCmdLets\ElasticNewSnapshot.cs" />
+    <Compile Include="SnapshotCmdLets\ElasticGetSnapshot.cs" />
     <Compile Include="ElastichSearch.cs" />
     <Compile Include="ElasticNodeInfo.cs" />
     <Compile Include="NestExtensions.cs" />
     <Compile Include="RepositoryCmdLets\ElasticGetRepositorySettings.cs" />
     <Compile Include="RepositoryCmdLets\ElasticGetRepository.cs" />
-    <Compile Include="ElasticSnapshot.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IndexCmdLets\ElasticNewIndex.cs" />
     <Compile Include="IndexCmdLets\ElasticRemoveIndex.cs" />

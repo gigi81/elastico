@@ -5,7 +5,7 @@ using Nest;
 
 namespace Elasticsearch.Powershell.IndexCmdLet
 {
-    [Cmdlet(VerbsCommon.Remove, "ElasticIndex")]
+    [Cmdlet(VerbsCommon.Remove, "ElasticIndex", ConfirmImpact = ConfirmImpact.Medium)]
     public class ElasticRemoveIndex : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = false, HelpMessage = "One or more index name. You can use the wildcard '*' in the name.")]
