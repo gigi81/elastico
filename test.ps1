@@ -1,3 +1,4 @@
+Import-Module ".\Elasticsearch\Elasticsearch.psd1"
 $nodes = @(
     "http://localhost:9200"
 )
