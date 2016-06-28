@@ -1,4 +1,3 @@
-Import-Module ".\ElasticsearchPowershell.psd1"
 $nodes = @(
     "http://localhost:9200"
 )

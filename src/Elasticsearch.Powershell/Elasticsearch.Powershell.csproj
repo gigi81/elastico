@@ -51,6 +51,7 @@
     <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\3.0\System.Management.Automation.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -84,11 +85,11 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Target Name="AfterBuild" Condition="$(Configuration) == 'Release'">
+    <ItemGroup>
+        <Binaries Include="$(OutputPath)*.dll"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)Elasticsearch\bin" />
+    <Copy SourceFiles="$(SolutionDir)Elasticsearch.psd1" DestinationFolder="$(SolutionDir)Elasticsearch" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
