@@ -89,7 +89,7 @@
     <ItemGroup>
         <Binaries Include="$(OutputPath)*.dll"/>
     </ItemGroup>
-    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)Elasticsearch\bin" />
-    <Copy SourceFiles="$(SolutionDir)Elasticsearch.psd1" DestinationFolder="$(SolutionDir)Elasticsearch" />
+    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)dist\bin" />
+    <Copy SourceFiles="$(SolutionDir)Elastico.psd1" DestinationFolder="$(SolutionDir)dist" />
   </Target>
 </Project>
