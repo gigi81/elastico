@@ -62,5 +62,34 @@ AliasesToExport = '*'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''
+
+PrivateData = @{
+    PSData = @{
+        # The primary categorization of this module (from the TechNet Gallery tech tree).
+        Category = "Scripting Techniques"
+
+        # Keyword tags to help users find this module via navigations and search.
+        Tags = @('elasticsearch', 'database')
+
+        # The web address of an icon which can be used in galleries to represent this module
+        IconUri = "https://raw.githubusercontent.com/elastic/elasticsearch-net/master/build/nuget-icon.png"
+
+        # The web address of this module's project or support homepage.
+        ProjectUri = "http://www.github.com/gigi81/elastico"
+
+        # The web address of this module's license. Points to a page that's embeddable and linkable.
+        LicenseUri = "https://raw.githubusercontent.com/gigi81/elastico/master/license.md"
+
+        # Release notes for this particular version of the module
+        # ReleaseNotes = False
+
+        # If true, the LicenseUrl points to an end-user license (not just a source license) which requires the user agreement before use.
+        # RequireLicenseAcceptance = ""
+
+        # Indicates this is a pre-release/testing version of the module.
+        IsPrerelease = 'False'
+    }
+}
+
 }
 
