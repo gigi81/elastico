@@ -2,7 +2,6 @@
 [![Build status stable](https://img.shields.io/appveyor/ci/gigi81/elastico/stable.svg?label=stable)](https://ci.appveyor.com/project/gigi81/elastico/branch/stable)
 
 # Elastico
-============
 
 Powershell module for Elasticsearch.
 
