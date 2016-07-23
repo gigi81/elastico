@@ -55,9 +55,5 @@ build:
 #disabled tests unitl an elasticsearch service is available
 test: off
 
-artifacts:
-  # pushing all *.nupkg files in build directory recursively
-  - path: '**\*.nupkg'
-
 deploy_script:
-  - ps: deploy.ps1
+  - ps: .\deploy.ps1
