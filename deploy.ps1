@@ -1,6 +1,3 @@
-param(
-    [string] $ApiKey
-)
 
 if($env:APPVEYOR_REPO_BRANCH -ne 'stable')
 {
@@ -9,4 +6,4 @@ if($env:APPVEYOR_REPO_BRANCH -ne 'stable')
 }
 
 cd dist
-Publish-Module -Name Elastico -NuGetApiKey $ApiKey
+Publish-Module -Name Elastico -NuGetApiKey "$($env:powershellgallery_apikey)"

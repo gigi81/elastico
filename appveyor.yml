@@ -60,4 +60,4 @@ artifacts:
   - path: '**\*.nupkg'
 
 deploy_script:
-  - ps: deploy.ps1 "$(powershellgallery_apikey)"
+  - ps: deploy.ps1
