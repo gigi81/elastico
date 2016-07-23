@@ -95,8 +95,9 @@
       <Binaries Include="$(OutputPath)*.dll" />
       <Binaries Include="$(OutputPath)*-Help.xml" />
     </ItemGroup>
-    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)dist\bin" />
-    <Copy SourceFiles="$(SolutionDir)Elastico.psd1" DestinationFolder="$(SolutionDir)dist" />
+    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)Elastico\bin" />
+    <Copy SourceFiles="$(SolutionDir)Elastico.psd1" DestinationFolder="$(SolutionDir)Elastico" />
+    <Copy SourceFiles="$(SolutionDir)Elastico.psm1" DestinationFolder="$(SolutionDir)Elastico" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
