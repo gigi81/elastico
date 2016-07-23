@@ -4,6 +4,9 @@ using Nest;
 
 namespace Elasticsearch.Powershell.RepositoryCmdLets
 {
+    /// <summary>
+    /// <para type="synopsis">Removes one or more repository from an elasticsearch cluster</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.Remove, "ElasticRepository", ConfirmImpact = ConfirmImpact.Medium)]
     public class ElasticRemoveRepository : ElasticCmdlet
     {

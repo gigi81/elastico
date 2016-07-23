@@ -9,6 +9,9 @@ using Nest;
 
 namespace Elasticsearch.Powershell
 {
+    /// <summary>
+    /// <para type="synopsis">Search records in an elasticsearch cluster</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.Search, "Elastic")]
     public class ElasticSearch : ElasticCmdlet
     {

@@ -5,6 +5,9 @@ using Nest;
 
 namespace Elasticsearch.Powershell.IndexCmdLet
 {
+    /// <summary>
+    /// <para type="synopsis">Removes one or more indices from the cluster</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.Remove, "ElasticIndex", ConfirmImpact = ConfirmImpact.Medium)]
     public class ElasticRemoveIndex : ElasticCmdlet
     {

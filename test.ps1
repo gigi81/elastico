@@ -3,6 +3,8 @@ $nodes = @(
     "http://localhost:9200"
 )
 
+Get-Help Get-ElasticClusterHealt
+
 # Get-ElasticClusterHealt -Verbose
 
 # Get-ElasticClusterHealt -Index ".kibana" -Verbose
@@ -38,6 +40,6 @@ $nodes = @(
 
 #Search-Elastic -Index "logstash-*" -Query "EventID: 7036" -Size 2 -Verbose
 
-Search-Elastic -Nodes $nodes -Query "EventID: 7036" -Fields @("Hostname", "EventID", "Version") -Verbose
+#Search-Elastic -Node $nodes -Query "EventID: 7036" -Fields @("Hostname", "EventID", "Version") -Verbose
 
-#Search-Elastic -Nodes $nodes -Query "EventID: 7036" -Fields "Hostname,EventID" -Verbose
+#Search-Elastic -Node $nodes -Query "EventID: 7036" -Fields "Hostname,EventID" -Verbose

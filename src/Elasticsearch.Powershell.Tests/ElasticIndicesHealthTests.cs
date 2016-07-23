@@ -13,7 +13,7 @@ namespace Elasticsearch.Powershell.Tests
         [Fact]
         public void Test()
         {
-            var cmdlet = new ElasticClusterHealt();
+            var cmdlet = new ElasticClusterHealth();
             var enumerator = cmdlet.Invoke().GetEnumerator();
 
             Assert.True(enumerator.MoveNext());
@@ -22,7 +22,7 @@ namespace Elasticsearch.Powershell.Tests
         [Fact]
         public void Test2()
         {
-            var cmdlet = new ElasticClusterHealt();
+            var cmdlet = new ElasticClusterHealth();
             cmdlet.Index = new[] { ".kibana" };
             var enumerator = cmdlet.Invoke().GetEnumerator();
 

@@ -15,11 +15,11 @@ namespace Elasticsearch.Powershell
 
         public ElasticCmdlet()
         {
-            this.Nodes = new[] { "http://localhost:9200" };
+            this.Node = new[] { "http://localhost:9200" };
         }
 
         [Parameter(Position = 0, Mandatory = false, HelpMessage = "The cluster node(s) urls (ex. http://localhost:9200)")]
-        public string[] Nodes { get; set; }
+        public string[] Node { get; set; }
 
         protected IElasticClient Client
         {
@@ -39,7 +39,7 @@ namespace Elasticsearch.Powershell
                 if (_connectionSettings != null)
                     return _connectionSettings;
 
-                var pool = new StaticConnectionPool(this.Nodes.Select(GetNodeUri));
+                var pool = new StaticConnectionPool(this.Node.Select(GetNodeUri));
                 return _connectionSettings = new ConnectionSettings(pool);
             }
             set

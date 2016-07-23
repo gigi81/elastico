@@ -3,10 +3,13 @@ using System.Management.Automation;
 
 namespace Elasticsearch.Powershell
 {
+    /// <summary>
+    /// <para type="synopsis">Get the cluster's nodes information</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.Get, "ElasticNodeInfo")]
     public class ElasticNodeInfo : ElasticCmdlet
     {
-        [Parameter(ValueFromPipeline = true)]
+        [Parameter(ValueFromPipeline = true, HelpMessage = "The target cluster. Use this parameter instead of the Node parameter.")]
         public Types.Cluster InputObject { get; set; }
 
         protected override void ProcessRecord()

@@ -6,6 +6,9 @@ using Nest;
 
 namespace Elasticsearch.Powershell.RepositoryCmdLets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new filesystem repository in the elasticsearch cluster</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "ElasticRepositoryFileSystem")]
     public class ElasticRepositoryFileSystem : ElasticCmdlet
     {

@@ -5,6 +5,9 @@ using Nest;
 
 namespace Elasticsearch.Powershell.RepositoryCmdLets
 {
+    /// <summary>
+    /// <para type="synopsis">Get the repository's settings</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.Get, "ElasticRepositorySettings")]
     public class ElasticGetRepositorySettings : ElasticGetRepository
     {

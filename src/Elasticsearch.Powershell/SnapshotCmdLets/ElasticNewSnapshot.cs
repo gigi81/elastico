@@ -4,13 +4,16 @@ using Nest;
 
 namespace Elasticsearch.Powershell.SnapshotCmdLets
 {
+    /// <summary>
+    /// <para type="synopsis">Create a new snapshot in a repository</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "ElasticSnapshot")]
     public class ElasticNewSnapshot : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = true, HelpMessage = "The repository name")]
         public string Repository { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, HelpMessage = "The name of the snapshot to create")]
+        [Parameter(Position = 2, Mandatory = true, HelpMessage = "The name of the snapshot to create")]
         public string Name { get; set; }
 
         protected override void ProcessRecord()

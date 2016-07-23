@@ -4,6 +4,9 @@ using Nest;
 
 namespace Elasticsearch.Powershell.RepositoryCmdLets
 {
+    /// <summary>
+    /// <para type="synopsis">Get the cluster's repositories</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.Get, "ElasticRepository")]
     public class ElasticGetRepository : ElasticCmdlet
     {

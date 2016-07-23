@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
-using System.Text;
-using System.Threading.Tasks;
 using Nest;
 
 namespace Elasticsearch.Powershell.IndexCmdLet
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new index in the cluster</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "ElasticIndex")]
     public class ElasticNewIndex : ElasticCmdlet
     {

@@ -4,6 +4,9 @@ using Nest;
 
 namespace Elasticsearch.Powershell.IndexCmdLets
 {
+    /// <summary>
+    /// <para type="synopsis">Get the cluster's indices. The output can be filtered using the Index parameter.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.Get, "ElasticIndex")]
     public class ElasticGetIndex : ElasticCmdlet
     {

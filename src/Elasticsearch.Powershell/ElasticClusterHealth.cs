@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management.Automation;
 using Nest;
 
 namespace Elasticsearch.Powershell
 {
-    [Cmdlet(VerbsCommon.Get, "ElasticClusterHealt")]
-    public class ElasticClusterHealt : ElasticCmdlet
+    /// <summary>
+    /// <para type="synopsis">Get the cluster's health status. It's possible to filter the output for specific indices.</para>
+    /// </summary>
+    [Cmdlet(VerbsCommon.Get, "ElasticClusterHealth")]
+    public class ElasticClusterHealth : ElasticCmdlet
     {
-        [Parameter(Position = 1, Mandatory = false, HelpMessage = "One or more index name(s). You can use the wildcard '*' in the name.")]
+        [Parameter(Position = 1, Mandatory = false, HelpMessage = "One or more index name(s) to filter output only for the specified index(es). You can use the wildcard '*' in the name.")]
         public string[] Index { get; set; }
 
         private Indices GetIndices()
