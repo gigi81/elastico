@@ -9,5 +9,4 @@ Write-Host "Installing nuget package provider"
 Install-PackageProvider NuGet -MinimumVersion '2.8.5.201' -Force
 
 Write-Host "Deploying module to powershellgallery"
-cd dist
-Publish-Module -Name Elastico -NuGetApiKey "$($env:powershellgallery_apikey)"
+Publish-Module -Path .\dist -NuGetApiKey "$($env:powershellgallery_apikey)"
