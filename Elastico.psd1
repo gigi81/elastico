@@ -66,7 +66,7 @@ AliasesToExport = '*'
 PrivateData = @{
     PSData = @{
         # The primary categorization of this module (from the TechNet Gallery tech tree).
-        Category = "Scripting Techniques"
+        Category = "Databases"
 
         # Keyword tags to help users find this module via navigations and search.
         Tags = @('elasticsearch', 'database')
