@@ -76,7 +76,7 @@ AliasesToExport = '*'
 # PrivateData = ''
 
 # HelpInfo URI of this module
-HelpInfoURI = 'http://www.github.com/gigi81/elasticsearch-powershell-module'
+HelpInfoURI = 'http://www.github.com/gigi81/elastico'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''

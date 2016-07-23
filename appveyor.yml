@@ -1,6 +1,10 @@
 # version format
 version: 0.1.{build}
 
+environment:
+  powershellgallery_apikey:
+    secure: mnc2Qk/sxVmJ1MXKzQMdNdA2RJYuf5/wZLchXz6cALTVuO9Y8alJf1mz+sa8+hMz
+    
 # branches to build
 branches:
   # blacklist
@@ -48,9 +52,12 @@ build:
   publish_nuget: true             # package projects with .nuspec files and push to artifacts
   publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 
-test:
+#disabled tests unitl an elasticsearch service is available
+test: off
 
 artifacts:
   # pushing all *.nupkg files in build directory recursively
   - path: '**\*.nupkg'
 
+deploy_script:
+  - ps: deploy.ps1 "$(powershellgallery_apikey)"
