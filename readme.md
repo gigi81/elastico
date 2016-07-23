@@ -1,11 +1,10 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/t41yax28y0yik0if/branch/master?svg=true)](https://ci.appveyor.com/project/gigi81/elastico/branch/master)
-[![Build status](https://ci.appveyor.com/api/projects/status/t41yax28y0yik0if/branch/stable?svg=true)](https://ci.appveyor.com/project/gigi81/elastico/branch/stable)
+[![Build status master](https://img.shields.io/appveyor/ci/gigi81/elastico/master.svg?label=master)](https://ci.appveyor.com/project/gigi81/elastico/branch/master)
+[![Build status stable](https://img.shields.io/appveyor/ci/gigi81/elastico/stable.svg?label=stable)](https://ci.appveyor.com/project/gigi81/elastico/branch/stable)
 
 # Elastico
-Powershell module for Elasticsearch
 ============
 
-This is a powershell module for Elasticsearch
+Powershell module for Elasticsearch.
 
 Install
 ============
@@ -24,3 +23,4 @@ The current version of the module supports the following functionalities:
 - list/add/remove snapshots (for backup)
 - get cluster health
 - get cluster info
+- search
