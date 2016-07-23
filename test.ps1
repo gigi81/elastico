@@ -1,4 +1,4 @@
-Import-Module ".\dist\Elastico.psd1"
+Import-Module ".\Elastico\Elastico.psd1"
 $nodes = @(
     "http://localhost:9200"
 )
