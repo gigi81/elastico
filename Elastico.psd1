@@ -1,7 +1,7 @@
 @{
 
 RootModule = 'Elastico.psm1'
-ModuleVersion = '0.1.0'
+ModuleVersion = '0.1.1'
 GUID = 'bd4390dc-a8ad-4bce-8d69-f53ccf8e4163'
 Author = 'Luigi Grilli'
 CompanyName = 'Luigi Grilli'
