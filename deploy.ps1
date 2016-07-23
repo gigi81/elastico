@@ -5,6 +5,9 @@ if($env:APPVEYOR_REPO_BRANCH -ne 'stable')
     exit(0)
 }
 
-Write-Host "Deploying to powershellgallery"
+Write-Host "Installing nuget package provider"
+Install-PackageProvider NuGet -MinimumVersion '2.8.5.201' -Force
+
+Write-Host "Deploying module to powershellgallery"
 cd dist
 Publish-Module -Name Elastico -NuGetApiKey "$($env:powershellgallery_apikey)"
