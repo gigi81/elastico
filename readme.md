@@ -23,3 +23,8 @@ The current version of the module supports the following functionalities:
 - get cluster health
 - get cluster info
 - search
+
+Documentation
+============
+
+Documentation is available on [github pages](https://gigi81.github.io/elastico/#Get-ElasticClusterHealth)
