@@ -55,7 +55,7 @@ after_build:
 #  - ps: Start-FileDownload 'https://github.com/gigi81/elk-windows-installer/releases/download/v1.0.16/elk-x64-1.0.16.exe'
 #  - elk-x64-1.0.16.exe /S /D=C:\Elk
   
-#test:
+test: off
 
 deploy_script:
   - ps: .\deploy.ps1

@@ -1,6 +1,5 @@
 @{
 
-RootModule = 'Elastico.psm1'
 ModuleVersion = '0.1.1'
 GUID = 'bd4390dc-a8ad-4bce-8d69-f53ccf8e4163'
 Author = 'Luigi Grilli'
@@ -40,7 +39,7 @@ HelpInfoURI = 'http://www.github.com/gigi81/elastico'
 # FormatsToProcess = @()
 
 # Functions to export from this module
-FunctionsToExport = 'Get-Function'
+FunctionsToExport = ''
 
 # Cmdlets to export from this module
 CmdletsToExport = '*'

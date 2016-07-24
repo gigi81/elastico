@@ -97,7 +97,6 @@
     </ItemGroup>
     <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)Elastico\bin" />
     <Copy SourceFiles="$(SolutionDir)Elastico.psd1" DestinationFolder="$(SolutionDir)Elastico" />
-    <Copy SourceFiles="$(SolutionDir)Elastico.psm1" DestinationFolder="$(SolutionDir)Elastico" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
