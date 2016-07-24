@@ -21,8 +21,5 @@ mkdir temp
 move temp\elasticsearch-%ELASTIC_SEARCH_VERSION% temp\elasticsearch
 rem ------------------------------------
 
-rem ---------- Install service ----------
-CALL temp\elasticsearch\bin\service.bat install
-
-rem ---------- Start service ----------
-CALL temp\elasticsearch\bin\service.bat start
+rem ---------- Run Elasticsearch ----------
+START temp\elasticsearch\bin\elasticsearch.bat
