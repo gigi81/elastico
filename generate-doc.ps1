@@ -1,4 +1,4 @@
-git clone https://github.com/ChaseFlorell/psDoc.git
+git clone https://github.com/ChaseFlorell/psDoc.git 2> $null
 
 Import-Module ".\Elastico\Elastico.psd1"
 
