@@ -50,9 +50,6 @@ build:
   publish_nuget: true             # package projects with .nuspec files and push to artifacts
   publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 
-after_build:
-  - powershell -File .\generate-doc.ps1
-  
 before_test:
   - elasticsearch.bat
   
@@ -60,3 +57,7 @@ test:
 
 deploy_script:
   - powershell -File .\deploy.ps1
+
+after_deploy:
+  - powershell -File .\generate-doc.ps1
+
