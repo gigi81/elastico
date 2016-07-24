@@ -49,7 +49,7 @@ build:
   publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 
 after_build:
-  - ps: generate-doc.ps1
+  - ps: .\generate-doc.ps1
   
 #before_test:
 #  - ps: Start-FileDownload 'https://github.com/gigi81/elk-windows-installer/releases/download/v1.0.16/elk-x64-1.0.16.exe'
