@@ -25,5 +25,5 @@ rem ---------- Install service ----------
 temp\elasticsearch\bin\service.bat install
 
 rem ---------- Start service ----------
-net start elasticsearch-service-x64
+temp\elasticsearch\bin\service.bat start
 
