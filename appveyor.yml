@@ -1,5 +1,5 @@
 # version format
-version: 0.1.2.{build}
+version: 0.2.0.{build}
 
 environment:
   powershellgallery_apikey:
@@ -25,10 +25,6 @@ init:
 cache:
   - packages
 
-# enable service required for build/tests
-services:
-  - elasticsearch
-  
 # enable patching of AssemblyInfo.* files
 assembly_info:
   patch: true
@@ -52,7 +48,13 @@ build:
   publish_nuget: true             # package projects with .nuspec files and push to artifacts
   publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 
-#disabled tests unitl an elasticsearch service is available
+#after_build:
+#  - ps: .\generate-doc.ps1
+  
+#before_test:
+#  - ps: Start-FileDownload 'https://github.com/gigi81/elk-windows-installer/releases/download/v1.0.16/elk-x64-1.0.16.exe'
+#  - elk-x64-1.0.16.exe /S /D=C:\Elk
+  
 test: off
 
 deploy_script:
