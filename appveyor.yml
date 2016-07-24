@@ -52,7 +52,9 @@ build:
 
 before_test:
   - elasticsearch.bat
-  
+  #wait 20 seconds for elasticsearch to come online
+  - ps: Start-Sleep -s 20
+
 test:
 
 deploy_script:
