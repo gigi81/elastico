@@ -48,7 +48,7 @@ build:
   publish_nuget: true             # package projects with .nuspec files and push to artifacts
   publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 
-#after_build:
+after_build:
   - powershell -File .\generate-doc.ps1
   
 #before_test:
