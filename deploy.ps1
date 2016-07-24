@@ -16,4 +16,4 @@ Update-ModuleManifest -Path .\Elastico\Elastico.psd1 -ModuleVersion "$($env:APPV
 Update-ModuleManifest -Path .\Elastico\Elastico.psd1 -CmdletsToExport $cmdlets
 
 Write-Host "Deploying module Elastico v$($env:APPVEYOR_BUILD_VERSION) to powershellgallery"
-#Publish-Module -Path .\Elastico -NuGetApiKey "$($env:powershellgallery_apikey)"
+Publish-Module -Path .\Elastico -NuGetApiKey "$($env:powershellgallery_apikey)"
