@@ -1,6 +1,6 @@
 @echo off
 rem ---------- tools
-SET CURL=tools\curl\bin\curl.exe
+SET CURL=tools\curl\curl.exe
 SET ZIP=tools\7zip\7za.exe
 
 rem ---------- components versions
