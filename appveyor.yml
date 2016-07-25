@@ -22,6 +22,9 @@ init:
   - SETX JAVA_HOME "C:\Program Files\Java\jdk1.8.0" /M
   - git config --global core.autocrlf input
 
+install:
+  - elasticsearch.bat  
+
 # build cache to preserve files/folders between builds
 cache:
   - packages
@@ -51,10 +54,12 @@ build:
   publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 
 before_test:
-  - elasticsearch.bat
-  #wait 20 seconds for elasticsearch to come online
-  - ps: Start-Sleep -s 20
-
+  - ps: curl "http://localhost:9200"
+  - ps: cat ('temp\elasticsearch\logs\elasticsearch-service-x64.{0:yyyy-MM-dd}.log' -f (Get-Date))
+  - ps: Start-Sleep -s 10
+  - ps: curl "http://localhost:9200"
+  - ps: cat ('temp\elasticsearch\logs\elasticsearch-service-x64.{0:yyyy-MM-dd}.log' -f (Get-Date))
+  
 test:
 
 deploy_script:
