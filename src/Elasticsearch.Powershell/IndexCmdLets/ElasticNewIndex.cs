@@ -3,7 +3,7 @@ using System.Linq;
 using System.Management.Automation;
 using Nest;
 
-namespace Elasticsearch.Powershell.IndexCmdLet
+namespace Elasticsearch.Powershell.IndexCmdLets
 {
     /// <summary>
     /// <para type="synopsis">Creates a new index in the cluster</para>
@@ -16,12 +16,10 @@ namespace Elasticsearch.Powershell.IndexCmdLet
 
         protected override void ProcessRecord()
         {
-            var index = new IndexName { Name = this.Index };
-
-            var create = this.Client.CreateIndex(index);
+            var create = this.Client.CreateIndex(this.Index);
             this.CheckResponse(create);
 
-            var cat = this.Client.CatIndices(new CatIndicesRequest(index));
+            var cat = this.Client.CatIndices(new CatIndicesRequest(this.Index));
             this.CheckResponse(cat);
 
             WriteObject(new Types.Index(cat.Records.First()));

@@ -6,3 +6,5 @@ Get-Command -Module Elastico
 
 cd .\psDoc\src
 .\psdoc.ps1 -ModuleName Elastico
+cd ..
+cd ..

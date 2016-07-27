@@ -21,5 +21,13 @@ namespace Elasticsearch.Powershell
 
             return record;
         }
+
+        public static long ParseLong(this string value)
+        {
+            if (String.IsNullOrEmpty(value))
+                return 0;
+
+            return long.Parse(value);
+        }
     }
 }

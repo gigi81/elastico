@@ -3,8 +3,8 @@ version: 0.2.0.{build}
 
 environment:
   powershellgallery_apikey:
-    secure: mnc2Qk/sxVmJ1MXKzQMdNdA2RJYuf5/wZLchXz6cALTVuO9Y8alJf1mz+sa8+hMz
-    
+      secure: mnc2Qk/sxVmJ1MXKzQMdNdA2RJYuf5/wZLchXz6cALTVuO9Y8alJf1mz+sa8+hMz
+
 # branches to build
 branches:
   # blacklist
@@ -17,13 +17,19 @@ skip_tags: true
 # Build worker image (VM template)
 image: Visual Studio 2015
 
-# scripts that are called at very beginning, before repo cloning
-init:
-  - git config --global core.autocrlf input
-
 # build cache to preserve files/folders between builds
 cache:
   - packages
+  - downloads
+
+# scripts that are called at very beginning, before repo cloning
+init:
+  - SETX JAVA_HOME "C:\Program Files\Java\jdk1.8.0" /M
+  - git config --global core.autocrlf input
+
+install:
+  # start elasticsearch service
+  - elasticsearch.bat  
 
 # enable patching of AssemblyInfo.* files
 assembly_info:
@@ -48,14 +54,15 @@ build:
   publish_nuget: true             # package projects with .nuspec files and push to artifacts
   publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 
-#after_build:
-#  - ps: .\generate-doc.ps1
+before_test:
+  - ps: curl "http://localhost:9200"
+  - ps: cat ('temp\elasticsearch\logs\elasticsearch-service-x64.{0:yyyy-MM-dd}.log' -f (Get-Date))
   
-#before_test:
-#  - ps: Start-FileDownload 'https://github.com/gigi81/elk-windows-installer/releases/download/v1.0.16/elk-x64-1.0.16.exe'
-#  - elk-x64-1.0.16.exe /S /D=C:\Elk
-  
-test: off
+test:
 
 deploy_script:
-  - ps: .\deploy.ps1
+  - powershell -File .\deploy.ps1
+
+after_deploy:
+  - powershell -File .\generate-doc.ps1
+

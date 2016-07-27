@@ -11,8 +11,8 @@ namespace Elasticsearch.Powershell.Types
 
         internal Index(CatIndicesRecord index)
         {
-            this.DocsCount = long.Parse(index.DocsCount);
-            this.DocsDeleted = long.Parse(index.DocsDeleted);
+            this.DocsCount = index.DocsCount.ParseLong();
+            this.DocsDeleted = index.DocsDeleted.ParseLong();
             this.Health = index.Health;
             this.Name = index.Index;
             this.Primary = index.Primary;
