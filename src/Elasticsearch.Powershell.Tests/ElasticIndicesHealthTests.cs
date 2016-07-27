@@ -22,6 +22,7 @@ namespace Elasticsearch.Powershell.Tests
         [Fact]
         public void ClusterHealtIndex()
         {
+            string index = "test" + Guid.NewGuid();
 
             var create = new IndexCmdLets.ElasticNewIndex();
             create.Index = index;
@@ -36,6 +37,7 @@ namespace Elasticsearch.Powershell.Tests
             var delete = new IndexCmdLets.ElasticRemoveIndex();
             delete.Index = new[] { index };
             var deleteEnumerator = delete.Invoke().GetEnumerator();
+            Assert.False(deleteEnumerator.MoveNext());
         }
     }
 }
