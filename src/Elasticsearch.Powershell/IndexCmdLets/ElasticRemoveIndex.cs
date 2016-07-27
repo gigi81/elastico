@@ -3,7 +3,7 @@ using System.Linq;
 using System.Management.Automation;
 using Nest;
 
-namespace Elasticsearch.Powershell.IndexCmdLet
+namespace Elasticsearch.Powershell.IndexCmdLets
 {
     /// <summary>
     /// <para type="synopsis">Removes one or more indices from the cluster</para>

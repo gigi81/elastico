@@ -71,6 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Person.cs" />
     <Compile Include="ElasticIndicesHealthTests.cs" />
     <Compile Include="ElasticSearchTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
