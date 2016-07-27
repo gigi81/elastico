@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Nest;
 using Xunit;
 using Xunit.Abstractions;
@@ -27,7 +28,11 @@ namespace Elasticsearch.Powershell.Tests
                 Lastname = "Pallino"
             };
 
-            _client.Index(person);
+            var insertResponse = _client.Index(person);
+            if (!insertResponse.IsValid)
+                throw insertResponse.OriginalException;
+
+            Thread.Sleep(1000);
         }
 
         public void Dispose()
