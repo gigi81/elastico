@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using Nest;
@@ -17,6 +18,33 @@ namespace Elasticsearch.Powershell.IndexCmdLets
         [Parameter(ValueFromPipeline = true)]
         public Types.Index[] InputObject { get; set; }
 
+#if ESV1
+        private IEnumerable<string> GetIndices()
+        {
+            if (this.InputObject != null)
+                return this.InputObject.Select(i => i.Name);
+
+            if (this.Index == null || this.Index.Length == 0)
+                return null;
+
+            return this.Index;
+        }
+
+        protected override void ProcessRecord()
+        {
+            var indices = this.GetIndices();
+            if (indices == null)
+                return;
+
+            foreach(var index in indices)
+            {
+                WriteVerbose($"Deleting index {index}");
+                var delete = this.Client.DeleteIndex(index);
+                this.CheckResponse(delete);
+            }
+        }
+
+#else
         private Indices GetIndices()
         {
             if (this.InputObject != null)
@@ -37,5 +65,6 @@ namespace Elasticsearch.Powershell.IndexCmdLets
             var delete = this.Client.DeleteIndex(indices);
             this.CheckResponse(delete);
         }
+#endif
     }
 }

@@ -11,6 +11,7 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
     [Cmdlet(VerbsCommon.Get, "ElasticRepositorySettings")]
     public class ElasticGetRepositorySettings : ElasticGetRepository
     {
+#if !ESV1
         protected override void ProcessRecord()
         {
             var response = this.Client.GetRepository(this.GetRequest);
@@ -19,5 +20,18 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
             foreach (var repo in response.Repositories.Keys)
                 WriteObject(response.GetSettings(repo));
         }
+#else
+        protected override void ProcessRecord()
+        {
+            foreach(var request in this.GetRequest())
+            {
+                var response = this.Client.GetRepository(request);
+                CheckResponse(response);
+
+                foreach (var repo in response.Repositories.Values)
+                    WriteObject(repo.Settings);
+            }
+        }
+#endif
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+#if ESV1
+using Elasticsearch.Net.ConnectionPool;
+#else
 using Elasticsearch.Net;
+#endif
 using Nest;
 
 namespace Elasticsearch.Powershell
@@ -53,24 +55,53 @@ namespace Elasticsearch.Powershell
             _client = null;
         }
 
+#if ESV1
+        protected void CheckResponse(IResponse response)
+        {
+            WriteVerbose(response.RequestInformation.Metrics.ToString());
+            CheckException(response.RequestInformation.OriginalException);
+        }
+#else
         protected void CheckResponse(IResponse response)
         {
             WriteVerbose(response.DebugInformation);
+            CheckException(response.OriginalException);
+        }
+#endif
 
-            if (response.OriginalException != null)
+#if ESV1
+        protected static string[] GetIndices(string[] index)
+        {
+            if (index == null || index.Length == 0)
+                return new[] { "*" };
+
+            return index;
+        }
+#else
+        private Indices GetIndices(string[] index)
+        {
+            if (index == null || index.Length == 0)
+                return Indices.All;
+
+            return Indices.Parse(String.Join(",", index));
+        }
+#endif
+
+        private void CheckException(Exception exception)
+        {
+            if (exception == null)
+                return;
+
+            var first = exception;
+
+            while (exception != null)
             {
-                var exception = response.OriginalException;
-                var first = exception;
-
-                while(exception != null)
-                {
-                    first = exception;
-                    WriteVerbose("Error: " + exception.Message);
-                    exception = exception.InnerException;
-                }
-
-                throw first;
+                first = exception;
+                WriteVerbose("Error: " + exception.Message);
+                exception = exception.InnerException;
             }
+
+            throw first;
         }
 
         private static Uri GetNodeUri(string node)

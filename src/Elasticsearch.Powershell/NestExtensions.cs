@@ -17,10 +17,13 @@ namespace Elasticsearch.Powershell
             {
                 Name = name,
                 Type = repo.Type,
+#if !ESV1
                 Settings = response.GetSettings(name)
+#endif
             };
         }
 
+#if !ESV1
         public static object GetSettings(this IGetRepositoryResponse response, string name)
         {
             switch (response.Repositories[name].Type.ToLowerInvariant())
@@ -63,5 +66,6 @@ namespace Elasticsearch.Powershell
 
             return names.ToNames();
         }
+#endif
     }
 }

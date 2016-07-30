@@ -32,14 +32,6 @@ namespace Elasticsearch.Powershell
         [Parameter(Position = 4, Mandatory = false, HelpMessage = "Number of records to return (default 100)")]
         public int Size { get; set; }
 
-        private Indices GetIndices()
-        {
-            if (this.Index == null || this.Index.Length == 0)
-                return Indices.All;
-
-            return Indices.Parse(String.Join(",", this.Index));
-        }
-
         private static string[] GetFields(string[] fields)
         {
             if (fields == null || fields.Length == 0)
@@ -62,7 +54,7 @@ namespace Elasticsearch.Powershell
         {
             var search = new SearchDescriptor<ExpandoObject>()
                                  .AllTypes()
-                                 .Index(this.GetIndices())
+                                 .Indices(GetIndices(this.Index)) //.Index(GetIndices(this.Index))
                                  .Size(this.Size);
 
             if (!String.IsNullOrWhiteSpace(this.Query))
@@ -70,7 +62,7 @@ namespace Elasticsearch.Powershell
 
             var include = GetFields(this.Fields);
             if (include != null)
-                search = search.Source(s => s.Include(i => i.Fields(include)));
+                search = search.Source(s => s.Include(include)); //i => i.Fields(include))
 
             var response = this.Client.Search<ExpandoObject>(search);
             this.CheckResponse(response);

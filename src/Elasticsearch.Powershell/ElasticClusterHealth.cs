@@ -13,22 +13,18 @@ namespace Elasticsearch.Powershell
         [Parameter(Position = 1, Mandatory = false, HelpMessage = "One or more index name(s) to filter output only for the specified index(es). You can use the wildcard '*' in the name.")]
         public string[] Index { get; set; }
 
-        private Indices GetIndices()
-        {
-            if (this.Index == null || this.Index.Length == 0)
-                return Indices.All;
-
-            return Indices.Parse(String.Join(",", this.Index));
-        }
-
         protected override void ProcessRecord()
         {
-            var health = this.Client.ClusterHealth(h => h.Index(this.GetIndices()));
+#if ESV1
+            var health = this.Client.ClusterHealth(h => h.Indices(GetIndices(this.Index)));
+#else
+            var health = this.Client.ClusterHealth(h => h.Index(GetIndices(this.Index)));
+#endif
             this.CheckResponse(health);
 
             WriteObject(new Types.Cluster
             {
-                ConnectionSettings = this.Client.ConnectionSettings,
+                ConnectionSettings = this.ConnectionSettings,
                 ActivePrimaryShards = health.ActivePrimaryShards,
                 ActiveShards = health.ActiveShards,
                 Name = health.ClusterName,

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>e0eaf9b3-3292-4070-a138-33963dd0297c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Elasticsearch.Powershell</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Consts.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ElasticClusterHealth.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ElasticCmdLet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnapshotCmdLets\ElasticRemoveSnapshot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnapshotCmdLets\ElasticNewSnapshot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnapshotCmdLets\ElasticGetSnapshot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ElasticSearch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ElasticNodeInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NestExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RepositoryCmdLets\ElasticGetRepositorySettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RepositoryCmdLets\ElasticGetRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IndexCmdLets\ElasticNewIndex.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IndexCmdLets\ElasticRemoveIndex.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IndexCmdLets\ElasticGetIndex.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RepositoryCmdLets\ElasticNewRepositoryFileSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RepositoryCmdLets\ElasticRemoveRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\Cluster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\Health.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\Index.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\Node.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\Repository.cs" />
+  </ItemGroup>
+</Project>
