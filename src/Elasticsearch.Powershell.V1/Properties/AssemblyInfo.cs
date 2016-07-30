@@ -8,7 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Elasticsearch.Powershell.V1")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("Luigi Grilli")]
 [assembly: AssemblyProduct("Elasticsearch.Powershell.V1")]
+[assembly: AssemblyCopyright("Copyright © Luigi Grilli 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
