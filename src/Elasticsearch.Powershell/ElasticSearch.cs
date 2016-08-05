@@ -52,17 +52,29 @@ namespace Elasticsearch.Powershell
 
         protected override void ProcessRecord()
         {
+#if ESV1
             var search = new SearchDescriptor<ExpandoObject>()
                                  .AllTypes()
-                                 .Indices(GetIndices(this.Index)) //.Index(GetIndices(this.Index))
+                                 .Indices(GetIndices(this.Index))
                                  .Size(this.Size);
-
+#else
+            var search = new SearchDescriptor<ExpandoObject>()
+                                 .AllTypes()
+                                 .Index(GetIndices(this.Index))
+                                 .Size(this.Size);
+#endif
             if (!String.IsNullOrWhiteSpace(this.Query))
                 search = search.Query(q => q.QueryString(s => s.Query(this.Query)));
 
             var include = GetFields(this.Fields);
             if (include != null)
-                search = search.Source(s => s.Include(include)); //i => i.Fields(include))
+            {
+#if ESV1
+                search = search.Source(s => s.Include(include));
+#else
+                search = search.Source(s => s.Include(i => i.Fields(include)));
+#endif
+            }
 
             var response = this.Client.Search<ExpandoObject>(search);
             this.CheckResponse(response);

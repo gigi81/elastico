@@ -78,7 +78,7 @@ namespace Elasticsearch.Powershell
             return index;
         }
 #else
-        private Indices GetIndices(string[] index)
+        protected Indices GetIndices(string[] index)
         {
             if (index == null || index.Length == 0)
                 return Indices.All;

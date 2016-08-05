@@ -9,5 +9,9 @@ namespace Elasticsearch.Powershell
 #if ESV1
         public const string Prefix = "ElasticV1";
 #endif
+
+#if ESV2
+        public const string Prefix = "ElasticV2";
+#endif
     }
 }
