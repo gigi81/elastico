@@ -18,19 +18,11 @@ namespace Elasticsearch.Powershell.SnapshotCmdLets
 
         protected override void ProcessRecord()
         {
-#if ESV1
-            var response = this.Client.GetSnapshot(this.Repository);
-            CheckResponse(response);
-
-            foreach (var snapshot in response.Snapshots)
-                WriteObject(snapshot);
-#else
             var response = this.Client.GetSnapshot(this.Repository, this.Name.ToNames(defaultName: "*"));
             CheckResponse(response);
 
             foreach (var snapshot in response.Snapshots)
                 WriteObject(snapshot);
-#endif
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
 #if ESV1
         private IDictionary<string, object> GetSettings()
         {
-            https://www.elastic.co/guide/en/elasticsearch/reference/1.7/modules-snapshots.html
+            // https://www.elastic.co/guide/en/elasticsearch/reference/1.7/modules-snapshots.html
             var ret = new Dictionary<string, object>();
 
             ret.Add("location", this.Location);

@@ -13,7 +13,7 @@ namespace Elasticsearch.Powershell.SnapshotCmdLets
         [Parameter(Position = 1, Mandatory = true, HelpMessage = "The repository name")]
         public string Repository { get; set; }
 
-        [Parameter(Position = 2, Mandatory = false, HelpMessage = "One or more snapshot name(s) to delete")]
+        [Parameter(Position = 2, Mandatory = true, HelpMessage = "One or more snapshot name(s) to delete")]
         public string[] Name { get; set; }
 
         protected override void ProcessRecord()

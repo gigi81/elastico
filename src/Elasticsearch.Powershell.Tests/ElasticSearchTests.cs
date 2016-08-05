@@ -6,18 +6,20 @@ using Xunit.Abstractions;
 
 namespace Elasticsearch.Powershell.Tests
 {
-    public class ElasticSearchTests : IDisposable
+    public class ElasticSearchTests : ElasticTest, IDisposable
     {
         ElasticClient _client;
-        string index = "searchtests" + Guid.NewGuid();
-        ITestOutputHelper _output;
+        string _index = "searchtests" + Guid.NewGuid();
 
         public ElasticSearchTests(ITestOutputHelper output)
+            : base(output)
         {
-            _output = output;
-
             var settings = new ConnectionSettings(new Uri("http://localhost:9200"));
-            settings.DefaultIndex(index);
+#if ESV1
+            settings.SetDefaultIndex(_index);
+#else
+            settings.DefaultIndex(_index);
+#endif
 
             _client = new ElasticClient(settings);
 
@@ -29,32 +31,31 @@ namespace Elasticsearch.Powershell.Tests
             };
 
             var insertResponse = _client.Index(person);
-            if (!insertResponse.IsValid)
-                throw insertResponse.OriginalException;
+            CheckResponse(insertResponse);
 
             Thread.Sleep(1000);
         }
 
         public void Dispose()
         {
-            _client.DeleteIndex(index);
+            _client.DeleteIndex(_index);
         }
 
         [Fact]
         public void Search()
         {
             var cmdlet = new ElasticSearch();
-            cmdlet.Index = new[] { index };
+            cmdlet.Index = new[] { _index };
             var enumerator = cmdlet.Invoke().GetEnumerator();
             var found = 0;
 
             while(enumerator.MoveNext())
             {
-                _output.WriteLine(enumerator.Current.ToString());
+                Output.WriteLine(enumerator.Current.ToString());
                 found++;
             }
 
-            _output.WriteLine($"Found {found} records");
+            Output.WriteLine($"Found {found} records");
             Assert.True(found > 0);
         }
     }

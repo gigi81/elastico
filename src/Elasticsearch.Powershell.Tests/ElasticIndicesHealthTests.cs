@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Elasticsearch.Powershell;
-using Nest;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Elasticsearch.Powershell.Tests
 {
-    public class ElasticIndicesHealthTests
+    public class ElasticIndicesHealthTests : ElasticTest
     {
+        public ElasticIndicesHealthTests(ITestOutputHelper output)
+            : base(output)
+        {
+        }
+
         [Fact]
         public void ClusterHealth()
         {

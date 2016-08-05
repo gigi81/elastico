@@ -7,8 +7,14 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Elasticsearch.Powershell", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Powershell.V1", "src\Elasticsearch.Powershell.V1\Elasticsearch.Powershell.V1.csproj", "{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Elasticsearch.Powershell.Tests", "src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.shproj", "{81107053-A24F-4415-8FD4-AEDF79622FB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Powershell.Tests.V1", "src\Elasticsearch.Powershell.Tests.V1\Elasticsearch.Powershell.Tests.V1.csproj", "{34B3DFEE-6900-4310-8534-BFABAAA77FB8}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{34b3dfee-6900-4310-8534-bfabaaa77fb8}*SharedItemsImports = 4
+		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{81107053-a24f-4415-8fd4-aedf79622fb0}*SharedItemsImports = 13
 		src\Elasticsearch.Powershell\Elasticsearch.Powershell.projitems*{e0eaf9b3-3292-4070-a138-33963dd0297c}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +26,10 @@ Global
 		{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34B3DFEE-6900-4310-8534-BFABAAA77FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34B3DFEE-6900-4310-8534-BFABAAA77FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34B3DFEE-6900-4310-8534-BFABAAA77FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34B3DFEE-6900-4310-8534-BFABAAA77FB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
