@@ -17,6 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Powershell.Te
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\Elasticsearch.Powershell\Elasticsearch.Powershell.projitems*{2ff62e01-19b4-4c2e-b26a-e21e6f2a6910}*SharedItemsImports = 4
 		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{34b3dfee-6900-4310-8534-bfabaaa77fb8}*SharedItemsImports = 4
 		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{7e53b638-0f5d-4773-bd38-1af9c16b5114}*SharedItemsImports = 4
 		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{81107053-a24f-4415-8fd4-aedf79622fb0}*SharedItemsImports = 13

@@ -58,8 +58,8 @@ namespace Elasticsearch.Powershell
 #if ESV1
         protected void CheckResponse(IResponse response)
         {
-            WriteVerbose(response.RequestInformation.Metrics.ToString());
-            CheckException(response.RequestInformation.OriginalException);
+            WriteVerbose(response.RequestInformation?.Metrics?.ToString());
+            CheckException(response.RequestInformation?.OriginalException);
         }
 #else
         protected void CheckResponse(IResponse response)
