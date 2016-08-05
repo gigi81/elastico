@@ -3,43 +3,45 @@ $nodes = @(
     "http://localhost:9200"
 )
 
-Get-Help Get-ElasticClusterHealt
+#Get-Help Get-ElasticV2ClusterHealt
 
-# Get-ElasticClusterHealt -Verbose
+# Get-ElasticV2ClusterHealt -Verbose
 
-# Get-ElasticClusterHealt -Index ".kibana" -Verbose
+# Get-ElasticV2ClusterHealt -Index ".kibana" -Verbose
 
 # \\\\WIN2012\\Backup\\
-# New-ElasticRepositoryFileSystem -Name "test1" -Location "test1" -Compress $true -Verbose
+# New-ElasticV2RepositoryFileSystem -Name "test1" -Location "test1" -Compress $true -Verbose
 
-# Get-ElasticRepositorySettings
+# Get-ElasticV2RepositorySettings
 
-# New-ElasticSnapshot -Repository "test1" -Name "snap1"
+# New-ElasticV2Snapshot -Repository "test1" -Name "snap1"
 
-# Get-ElasticSnapshot -Repository "test1"
+# Get-ElasticV2Snapshot -Repository "test1"
 
-# Get-ElasticNode
+# Get-ElasticV2NodeInfo -Verbose
 
-# Get-ElasticClusterHealt | Get-ElasticNode
+# Get-ElasticV2ClusterHealt | Get-ElasticV2Node
 
-#Get-ElasticClusterHealtHealth "localhost:9200" -Verbose
+#Get-ElasticV2ClusterHealtHealth "localhost:9200" -Verbose
 
-#Get-ElasticIndicesHealth
+#Get-ElasticV2IndicesHealth
 
-#Get-ElasticIndex -Index ".kibana,logstash-2016.06.18"
+Get-ElasticV2Index
 
-#Get-ElasticIndex -Index @(".kibana", "logstash-2016.06.18")
+#Get-ElasticV2Index -Index ".kibana,logstash-2016.06.18"
 
-# Get-ElasticIndex -Index "logstash-*" | Remove-ElasticIndex
+#Get-ElasticV2Index -Index @(".kibana", "logstash-2016.06.18")
 
-# Remove-ElasticIndex -Index "logstash-*"
+# Get-ElasticV2Index -Index "logstash-*" | Remove-ElasticV2Index
 
-# New-ElasticIndex -Index "test1234"
+# Remove-ElasticV2Index -Index "logstash-*"
 
-#Search-Elastic -Index "logstash-*" | Where-Object { $_.EventID -eq 4002 }
+# New-ElasticV2Index -Index "test1234"
 
-#Search-Elastic -Index "logstash-*" -Query "EventID: 7036" -Size 2 -Verbose
+#Search-ElasticV2 -Index "logstash-*" | Where-Object { $_.EventID -eq 4002 }
 
-#Search-Elastic -Node $nodes -Query "EventID: 7036" -Fields @("Hostname", "EventID", "Version") -Verbose
+#Search-ElasticV2 -Index "logstash-*" -Query "EventID: 7036" -Size 2 -Verbose
 
-#Search-Elastic -Node $nodes -Query "EventID: 7036" -Fields "Hostname,EventID" -Verbose
+#Search-ElasticV2 -Node $nodes -Query "EventID: 7036" -Fields @("Hostname", "EventID", "Version") -Verbose
+
+#Search-ElasticV2 -Node $nodes -Query "EventID: 7036" -Fields "Hostname,EventID" -Verbose

@@ -1,6 +1,6 @@
 @{
 
-ModuleVersion = '0.1.1'
+ModuleVersion = '1.0.0'
 GUID = 'bd4390dc-a8ad-4bce-8d69-f53ccf8e4163'
 Author = 'Luigi Grilli'
 CompanyName = 'Luigi Grilli'
@@ -10,7 +10,10 @@ PowerShellVersion = '4.0'
 DotNetFrameworkVersion = '4.5'
 CLRVersion = '4.0'
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = @('bin\Elasticsearch.Powershell.dll')
+NestedModules = @(
+    'bin\Elasticsearch.Powershell.V1.dll',
+    'bin\Elasticsearch.Powershell.V2.dll'
+)
 # HelpInfo URI of this module
 HelpInfoURI = 'http://www.github.com/gigi81/elastico'
 
