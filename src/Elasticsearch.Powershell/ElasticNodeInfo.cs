@@ -6,7 +6,7 @@ namespace Elasticsearch.Powershell
     /// <summary>
     /// <para type="synopsis">Get the cluster's nodes information</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "ElasticNodeInfo")]
+    [Cmdlet(VerbsCommon.Get, Consts.Prefix + "NodeInfo")]
     public class ElasticNodeInfo : ElasticCmdlet
     {
         [Parameter(ValueFromPipeline = true, HelpMessage = "The target cluster. Use this parameter instead of the Node parameter.")]

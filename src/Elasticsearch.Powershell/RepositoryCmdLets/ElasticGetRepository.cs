@@ -9,7 +9,7 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
     /// <summary>
     /// <para type="synopsis">Get the cluster's repositories</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "ElasticRepository")]
+    [Cmdlet(VerbsCommon.Get, Consts.Prefix + "Repository")]
     public class ElasticGetRepository : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = false, HelpMessage = "One or more repository name(s)")]

@@ -7,7 +7,7 @@ namespace Elasticsearch.Powershell
     /// <summary>
     /// <para type="synopsis">Get the cluster's health status. It's possible to filter the output for specific indices.</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "ElasticClusterHealth")]
+    [Cmdlet(VerbsCommon.Get, Consts.Prefix + "ClusterHealth")]
     public class ElasticClusterHealth : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = false, HelpMessage = "One or more index name(s) to filter output only for the specified index(es). You can use the wildcard '*' in the name.")]

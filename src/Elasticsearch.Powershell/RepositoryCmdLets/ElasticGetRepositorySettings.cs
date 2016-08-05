@@ -8,7 +8,7 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
     /// <summary>
     /// <para type="synopsis">Get the repository's settings</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "ElasticRepositorySettings")]
+    [Cmdlet(VerbsCommon.Get, Consts.Prefix + "RepositorySettings")]
     public class ElasticGetRepositorySettings : ElasticGetRepository
     {
 #if !ESV1

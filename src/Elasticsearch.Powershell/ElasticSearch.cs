@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Management.Automation;
-using System.Text;
-using System.Threading.Tasks;
 using Nest;
 
 namespace Elasticsearch.Powershell
@@ -12,7 +9,7 @@ namespace Elasticsearch.Powershell
     /// <summary>
     /// <para type="synopsis">Search records in an elasticsearch cluster</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Search, "Elastic")]
+    [Cmdlet(VerbsCommon.Search, Consts.Prefix)]
     public class ElasticSearch : ElasticCmdlet
     {
         public ElasticSearch()

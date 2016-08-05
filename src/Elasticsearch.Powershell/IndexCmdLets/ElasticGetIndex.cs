@@ -7,7 +7,7 @@ namespace Elasticsearch.Powershell.IndexCmdLets
     /// <summary>
     /// <para type="synopsis">Get the cluster's indices. The output can be filtered using the Index parameter.</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "ElasticIndex")]
+    [Cmdlet(VerbsCommon.Get, Consts.Prefix + "Index")]
     public class ElasticGetIndex : ElasticCmdlet
     {
 #if !ESV1

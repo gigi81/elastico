@@ -7,7 +7,7 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
     /// <summary>
     /// <para type="synopsis">Removes one or more repository from an elasticsearch cluster</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "ElasticRepository", ConfirmImpact = ConfirmImpact.Medium)]
+    [Cmdlet(VerbsCommon.Remove, Consts.Prefix + "Repository", ConfirmImpact = ConfirmImpact.Medium)]
     public class ElasticRemoveRepository : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = true, HelpMessage = "The name(s) of the repository to delete")]

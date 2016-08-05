@@ -9,7 +9,7 @@ namespace Elasticsearch.Powershell.IndexCmdLets
     /// <summary>
     /// <para type="synopsis">Removes one or more indices from the cluster</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "ElasticIndex", ConfirmImpact = ConfirmImpact.Medium)]
+    [Cmdlet(VerbsCommon.Remove, Consts.Prefix + "Index", ConfirmImpact = ConfirmImpact.Medium)]
     public class ElasticRemoveIndex : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = false, HelpMessage = "One or more index name. You can use the wildcard '*' in the name.")]

@@ -7,7 +7,7 @@ namespace Elasticsearch.Powershell.SnapshotCmdLets
     /// <summary>
     /// <para type="synopsis">Delete snapshots from the specified repository</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "ElasticSnapshot")]
+    [Cmdlet(VerbsCommon.Remove, Consts.Prefix + "Snapshot")]
     public class ElasticRemoveSnapshot : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = true, HelpMessage = "The repository name")]

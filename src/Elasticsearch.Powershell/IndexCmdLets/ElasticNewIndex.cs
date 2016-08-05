@@ -8,7 +8,7 @@ namespace Elasticsearch.Powershell.IndexCmdLets
     /// <summary>
     /// <para type="synopsis">Creates a new index in the cluster</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "ElasticIndex")]
+    [Cmdlet(VerbsCommon.New, Consts.Prefix + "Index")]
     public class ElasticNewIndex : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = true, HelpMessage = "The name of the new index to create")]

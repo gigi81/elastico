@@ -7,7 +7,7 @@ namespace Elasticsearch.Powershell.SnapshotCmdLets
     /// <summary>
     /// <para type="synopsis">Create a new snapshot in a repository</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "ElasticSnapshot")]
+    [Cmdlet(VerbsCommon.New, Consts.Prefix + "Snapshot")]
     public class ElasticNewSnapshot : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = true, HelpMessage = "The repository name")]

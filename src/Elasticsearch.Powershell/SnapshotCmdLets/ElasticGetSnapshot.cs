@@ -7,7 +7,7 @@ namespace Elasticsearch.Powershell.SnapshotCmdLets
     /// <summary>
     /// <para type="synopsis">Get a list of the spanpshots in the specified repository</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "ElasticSnapshot")]
+    [Cmdlet(VerbsCommon.Get, Consts.Prefix + "Snapshot")]
     public class ElasticGetSnapshot : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = true, HelpMessage = "The repository name")]

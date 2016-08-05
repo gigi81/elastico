@@ -9,7 +9,7 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
     /// <summary>
     /// <para type="synopsis">Creates a new filesystem repository in the elasticsearch cluster</para>
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "ElasticRepositoryFileSystem")]
+    [Cmdlet(VerbsCommon.New, Consts.Prefix + "RepositoryFileSystem")]
     public class ElasticRepositoryFileSystem : ElasticCmdlet
     {
         [Parameter(Position = 1, Mandatory = true, HelpMessage = "Repository name")]
