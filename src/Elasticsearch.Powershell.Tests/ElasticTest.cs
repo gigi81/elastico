@@ -80,5 +80,18 @@ namespace Elasticsearch.Powershell.Tests
             if (!response.IsValid)
                 throw exception ?? new Exception("Request failed");
         }
+
+        /// <summary>
+        /// Force elasticsearch to refresh index
+        /// https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html
+        /// </summary>
+        protected void RefreshIndex()
+        {
+#if ESV1
+            this.Client.Refresh(i => i.Index(this.DefaultIndex));
+#else
+            this.Client.Refresh(this.DefaultIndex);
+#endif
+        }
     }
 }

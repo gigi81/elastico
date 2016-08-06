@@ -23,8 +23,7 @@ namespace Elasticsearch.Powershell.Tests
                 CheckResponse(insertResponse);
             }
 
-            //wait for server to index data
-            Thread.Sleep(1000);
+            this.RefreshIndex();
         }
 
         [Fact]
