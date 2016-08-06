@@ -12,7 +12,7 @@ namespace Elasticsearch.Powershell.Tests
         protected ElasticTest(ITestOutputHelper outputHelper)
         {
             this.Output = outputHelper;
-            this.Server = new ElasticsearchInside.Elasticsearch();
+            this.Server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(outputHelper.WriteLine));
         }
 
         public Uri ServerUrl
@@ -44,12 +44,12 @@ namespace Elasticsearch.Powershell.Tests
         protected void CheckResponse(IResponse response)
         {
 #if ESV1
-            if (!response.IsValid)
-                throw response.RequestInformation.OriginalException;
+            var exception = response?.RequestInformation?.OriginalException;
 #else
-            if (!response.IsValid)
-                throw response.OriginalException;
+            var exception = response.OriginalException;
 #endif
+            if (!response.IsValid)
+                throw exception ?? new Exception("Request failed");
         }
     }
 }
