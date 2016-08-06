@@ -48,7 +48,10 @@ namespace Elasticsearch.Powershell.Tests
         [Fact]
         public void SearchQuery()
         {
-            var field = nameof(Domain.Person.Firstname);
+            //fields are camel case
+            //https://www.elastic.co/guide/en/elasticsearch/client/net-api/2.x/field-inference.html
+            var field = nameof(Domain.Person.Firstname).ToLower();
+
             var value = Data[0].Firstname;
             var count = Data.Count(p => p.Firstname.Equals(value));
 
@@ -60,11 +63,10 @@ namespace Elasticsearch.Powershell.Tests
             var enumerator = cmdlet.Invoke().GetEnumerator();
             var found = 0;
 
-            while (enumerator.MoveNext())
+            foreach (PSObject record in cmdlet.Invoke())
             {
-                Output.WriteLine(enumerator.Current.ToString());
+                Output.WriteLine(record.ToString());
 
-                var record = (PSObject) enumerator.Current;
                 Assert.Equal(value, record.Properties[field].Value);
                 found++;
             }
@@ -76,7 +78,9 @@ namespace Elasticsearch.Powershell.Tests
         [Fact]
         public void SearchFields()
         {
-            var field = nameof(Domain.Person.Firstname);
+            //fields are camel case
+            //https://www.elastic.co/guide/en/elasticsearch/client/net-api/2.x/field-inference.html
+            var field = nameof(Domain.Person.Firstname).ToLower();
 
             var cmdlet = this.CreateCmdLet<ElasticSearch>();
             cmdlet.Index = new[] { this.DefaultIndex };
