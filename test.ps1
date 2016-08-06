@@ -3,7 +3,7 @@ $nodes = @(
     "http://localhost:9200"
 )
 
-Get-Command -Module Elastico
+Get-Command -Module Elastico | Format-Table -Property Name,Version
 
 #Get-Help Get-ElasticV2ClusterHealt
 
