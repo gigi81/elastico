@@ -8,7 +8,7 @@
     <ProjectGuid>{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Elasticsearch.Powershell.V1</RootNamespace>
+    <RootNamespace>Elasticsearch.Powershell</RootNamespace>
     <AssemblyName>Elasticsearch.Powershell.V1</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -78,7 +78,7 @@
       <Binaries Include="$(OutputPath)*.dll" />
       <Binaries Include="$(OutputPath)*-Help.xml" />
     </ItemGroup>
-    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)Elastico\bin" />
+    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)Elastico\bin\V1" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

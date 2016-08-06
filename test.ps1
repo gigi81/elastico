@@ -3,6 +3,8 @@ $nodes = @(
     "http://localhost:9200"
 )
 
+Get-Command -Module Elastico
+
 #Get-Help Get-ElasticV2ClusterHealt
 
 # Get-ElasticV2ClusterHealt -Verbose
@@ -26,7 +28,7 @@ $nodes = @(
 
 #Get-ElasticV2IndicesHealth
 
-Get-ElasticV2Index
+# Get-ElasticV2Index
 
 #Get-ElasticV2Index -Index ".kibana,logstash-2016.06.18"
 

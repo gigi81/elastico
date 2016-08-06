@@ -45,8 +45,8 @@ before_build:
 build:
   parallel: true                          # enable MSBuild parallel builds
   project: Elasticsearch.Powershell.sln   # path to Visual Studio solution or project
-  publish_nuget: true             # package projects with .nuspec files and push to artifacts
-  publish_nuget_symbols: true     # generate and publish NuGet symbol packages
+  publish_nuget: false             # package projects with .nuspec files and push to artifacts
+  publish_nuget_symbols: false     # generate and publish NuGet symbol packages
 
 test:
 

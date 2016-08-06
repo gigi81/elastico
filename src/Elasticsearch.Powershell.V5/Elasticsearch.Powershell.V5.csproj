@@ -5,45 +5,46 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8AADCAE0-6C3E-4043-BBBC-6836B5F287D0}</ProjectGuid>
+    <ProjectGuid>{80F98539-3D66-459C-B625-B219C3919E3D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Elasticsearch.Powershell</RootNamespace>
-    <AssemblyName>Elasticsearch.Powershell.V2</AssemblyName>
+    <AssemblyName>Elasticsearch.Powershell.V5</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;ESV2</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;ESV5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Elasticsearch.Powershell.V2.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\Elasticsearch.Powershell.V5.XML</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;ESV2</DefineConstants>
+    <DefineConstants>TRACE;ESV5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Elasticsearch.Powershell.V2.XML</DocumentationFile>
     <NoWarn>1591</NoWarn>
+    <DocumentationFile>bin\Release\Elasticsearch.Powershell.V5.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Elasticsearch.Net, Version=2.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Elasticsearch.Net.2.4.3\lib\net45\Elasticsearch.Net.dll</HintPath>
+    <Reference Include="Elasticsearch.Net, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Elasticsearch.Net.5.0.0-alpha3\lib\net45\Elasticsearch.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NEST.2.4.3\lib\net45\Nest.dll</HintPath>
+    <Reference Include="Nest, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NEST.5.0.0-alpha3\lib\net45\Nest.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -73,7 +74,7 @@
       <Binaries Include="$(OutputPath)*.dll" />
       <Binaries Include="$(OutputPath)*-Help.xml" />
     </ItemGroup>
-    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)Elastico\bin\V2" />
+    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(SolutionDir)Elastico\bin\V5" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Elasticsearch.Powershell.Tests.V2")]
+[assembly: AssemblyTitle("Elasticsearch.Powershell.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Elasticsearch.Powershell.Tests.V2")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("Luigi Grilli")]
+[assembly: AssemblyProduct("Elasticsearch.Powershell.Tests")]
+[assembly: AssemblyCopyright("Copyright © 2016 Luigi Grilli")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
