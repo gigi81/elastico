@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Person.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ElasticIndicesHealthTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ElasticIndices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ElasticSearchTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ElasticTest.cs" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -14,32 +15,36 @@ namespace Elasticsearch.Powershell.Tests
         [Fact]
         public void ClusterHealth()
         {
-            var cmdlet = new ElasticClusterHealth();
-            cmdlet.Node = this.Node;
+            var cmdlet = this.CreateCmdLet<ElasticClusterHealth>();
             var enumerator = cmdlet.Invoke().GetEnumerator();
 
             Assert.True(enumerator.MoveNext());
         }
 
         [Fact]
-        public void ClusterHealtIndex()
+        public void NewGetRemoveIndex()
         {
             string index = "test" + Guid.NewGuid();
 
-            var create = new IndexCmdLets.ElasticNewIndex();
-            create.Node = this.Node;
+            //create index
+            var create = this.CreateCmdLet<IndexCmdLets.ElasticNewIndex>();
             create.Index = index;
             var createEnumerator = create.Invoke().GetEnumerator();
             Assert.True(createEnumerator.MoveNext());
 
-            var health = new ElasticClusterHealth();
-            health.Node = this.Node;
-            health.Index = new[] { index };
-            var healthEnumerator = health.Invoke().GetEnumerator();
-            Assert.True(healthEnumerator.MoveNext());
+            //check index health
+            var get = this.CreateCmdLet<IndexCmdLets.ElasticGetIndex>();
+#if ESV1
+            Assert.Equal(1, get.Invoke().Cast<Types.Index>().Count(i => i.Name.Equals(index)));
+#else
+            get.Index = new[] { index };
+            var getEnumerator = get.Invoke().GetEnumerator();
+            Assert.True(getEnumerator.MoveNext());
+            Assert.False(getEnumerator.MoveNext());
+#endif
 
-            var delete = new IndexCmdLets.ElasticRemoveIndex();
-            delete.Node = this.Node;
+            //delete index
+            var delete = this.CreateCmdLet<IndexCmdLets.ElasticRemoveIndex>();
             delete.Index = new[] { index };
             var deleteEnumerator = delete.Invoke().GetEnumerator();
             Assert.False(deleteEnumerator.MoveNext());
