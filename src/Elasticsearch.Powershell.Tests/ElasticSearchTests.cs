@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 
 namespace Elasticsearch.Powershell.Tests
 {
-    public class ElasticSearchTests : ElasticTest, IDisposable
+    public class ElasticSearchTests : ElasticTest
     {
         ElasticClient _client;
         string _index = "searchtests" + Guid.NewGuid();
@@ -14,7 +14,7 @@ namespace Elasticsearch.Powershell.Tests
         public ElasticSearchTests(ITestOutputHelper output)
             : base(output)
         {
-            var settings = new ConnectionSettings(new Uri("http://localhost:9200"));
+            var settings = new ConnectionSettings(this.ServerUrl);
 #if ESV1
             settings.SetDefaultIndex(_index);
 #else
@@ -36,7 +36,7 @@ namespace Elasticsearch.Powershell.Tests
             Thread.Sleep(1000);
         }
 
-        public void Dispose()
+        protected override void DisposeInternal()
         {
             _client.DeleteIndex(_index);
         }
@@ -45,6 +45,7 @@ namespace Elasticsearch.Powershell.Tests
         public void Search()
         {
             var cmdlet = new ElasticSearch();
+            cmdlet.Node = this.Node;
             cmdlet.Index = new[] { _index };
             var enumerator = cmdlet.Invoke().GetEnumerator();
             var found = 0;

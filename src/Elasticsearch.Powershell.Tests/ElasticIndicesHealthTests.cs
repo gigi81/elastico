@@ -15,6 +15,7 @@ namespace Elasticsearch.Powershell.Tests
         public void ClusterHealth()
         {
             var cmdlet = new ElasticClusterHealth();
+            cmdlet.Node = this.Node;
             var enumerator = cmdlet.Invoke().GetEnumerator();
 
             Assert.True(enumerator.MoveNext());
@@ -26,16 +27,19 @@ namespace Elasticsearch.Powershell.Tests
             string index = "test" + Guid.NewGuid();
 
             var create = new IndexCmdLets.ElasticNewIndex();
+            create.Node = this.Node;
             create.Index = index;
             var createEnumerator = create.Invoke().GetEnumerator();
             Assert.True(createEnumerator.MoveNext());
 
             var health = new ElasticClusterHealth();
+            health.Node = this.Node;
             health.Index = new[] { index };
             var healthEnumerator = health.Invoke().GetEnumerator();
             Assert.True(healthEnumerator.MoveNext());
 
             var delete = new IndexCmdLets.ElasticRemoveIndex();
+            delete.Node = this.Node;
             delete.Index = new[] { index };
             var deleteEnumerator = delete.Invoke().GetEnumerator();
             Assert.False(deleteEnumerator.MoveNext());

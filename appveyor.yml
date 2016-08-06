@@ -27,10 +27,6 @@ init:
   - SETX JAVA_HOME "C:\Program Files\Java\jdk1.8.0" /M
   - git config --global core.autocrlf input
 
-install:
-  # start elasticsearch service
-  - elasticsearch.bat  
-
 # enable patching of AssemblyInfo.* files
 assembly_info:
   patch: true
@@ -54,10 +50,6 @@ build:
   publish_nuget: true             # package projects with .nuspec files and push to artifacts
   publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 
-before_test:
-  - ps: curl "http://localhost:9200"
-  - ps: cat ('temp\elasticsearch\logs\elasticsearch-service-x64.{0:yyyy-MM-dd}.log' -f (Get-Date))
-  
 test:
 
 deploy_script:
