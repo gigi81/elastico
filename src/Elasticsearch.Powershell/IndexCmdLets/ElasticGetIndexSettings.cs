@@ -15,13 +15,13 @@ namespace Elasticsearch.Powershell.IndexCmdLets
 
         protected override void ProcessRecord()
         {
-            var cat = this.Client.GetIndexSettings(r => r.Index(this.Index));
-            this.CheckResponse(cat);
+            var response = this.Client.GetIndexSettings(r => r.Index(this.Index));
+            this.CheckResponse(response);
 
 #if ESV1
-            WriteObject(new Hashtable((IDictionary) cat.IndexSettings.Settings));
+            WriteObject(new Hashtable((IDictionary) response.IndexSettings.Settings));
 #else
-            foreach(var state in cat.Indices.Values)
+            foreach(var state in response.Indices.Values)
                 WriteObject(new Hashtable((IDictionary) state.Settings));
 #endif
         }
