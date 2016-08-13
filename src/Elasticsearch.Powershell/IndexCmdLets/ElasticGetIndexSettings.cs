@@ -5,7 +5,7 @@ using System.Management.Automation;
 namespace Elasticsearch.Powershell.IndexCmdLets
 {
     /// <summary>
-    /// <para type="synopsis">Get index settings. V1 cmdlet is single index, while V2+ supports multiple indexes per reuqest</para>
+    /// <para type="synopsis">Get the specified index settings</para>
     /// </summary>
     [Cmdlet(VerbsCommon.Get, Consts.Prefix + "IndexSettings")]
     public class ElasticGetIndexSettings : ElasticCmdlet

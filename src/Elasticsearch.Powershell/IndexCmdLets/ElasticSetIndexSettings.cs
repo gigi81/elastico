@@ -11,7 +11,7 @@ using Newtonsoft.Json.Serialization;
 namespace Elasticsearch.Powershell.IndexCmdLets
 {
     /// <summary>
-    /// <para type="synopsis">Update an index settings</para>
+    /// <para type="synopsis">Set the specified index settings</para>
     /// </summary>
     [Cmdlet(VerbsCommon.Set, Consts.Prefix + "IndexSettings")]
     public class ElasticSetIndexSettings : ElasticCmdlet
