@@ -5,9 +5,9 @@ using Xunit.Abstractions;
 
 namespace Elasticsearch.Powershell.Tests
 {
-    public class ElasticIndicesHealthTests : ElasticTest
+    public class IndicesHealthTests : ElasticTest
     {
-        public ElasticIndicesHealthTests(ITestOutputHelper output)
+        public IndicesHealthTests(ITestOutputHelper output)
             : base(output)
         {
         }
@@ -16,6 +16,15 @@ namespace Elasticsearch.Powershell.Tests
         public void ClusterHealth()
         {
             var cmdlet = this.CreateCmdLet<ElasticClusterHealth>();
+            var enumerator = cmdlet.Invoke().GetEnumerator();
+
+            Assert.True(enumerator.MoveNext());
+        }
+
+        [Fact]
+        public void NodeInfo()
+        {
+            var cmdlet = this.CreateCmdLet<ElasticNodeInfo>();
             var enumerator = cmdlet.Invoke().GetEnumerator();
 
             Assert.True(enumerator.MoveNext());

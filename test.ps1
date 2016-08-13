@@ -3,11 +3,11 @@ $nodes = @(
     "http://localhost:9200"
 )
 
-Get-Command -Module Elastico | Format-Table -Property Name,Version
+# Get-Command -Module Elastico | Format-Table -Property Name,Version
 
-#Get-Help Get-ElasticV2ClusterHealt
+# Get-Help Get-ElasticV2ClusterHealth
 
-# Get-ElasticV2ClusterHealt -Verbose
+Get-ElasticV2ClusterHealth -Verbose
 
 # Get-ElasticV2ClusterHealt -Index ".kibana" -Verbose
 
@@ -42,8 +42,14 @@ Get-Command -Module Elastico | Format-Table -Property Name,Version
 
 #Search-ElasticV2 -Index "logstash-*" | Where-Object { $_.EventID -eq 4002 }
 
-#Search-ElasticV2 -Index "logstash-*" -Query "EventID: 7036" -Size 2 -Verbose
+# Search-ElasticV2 -Index "logstash-*" -Query "EventID: 7036" -Size 2 -Verbose
 
-#Search-ElasticV2 -Node $nodes -Query "EventID: 7036" -Fields @("Hostname", "EventID", "Version") -Verbose
+# Search-ElasticV2 -Node $nodes -Query "EventID: 7036" -Fields @("Hostname", "EventID", "Version") -Verbose
 
 #Search-ElasticV2 -Node $nodes -Query "EventID: 7036" -Fields "Hostname,EventID" -Verbose
+
+# Get-ElasticV2IndexSettings -Index ".kibana"
+
+# Set-ElasticV2IndexSettings -Index ".kibana" -Settings @{ "number_of_shards" = 2 } -Verbose
+
+Get-ElasticV2IndexSettings -Index ".kibana"

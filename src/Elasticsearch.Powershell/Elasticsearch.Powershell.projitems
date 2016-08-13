@@ -12,6 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Consts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ElasticClusterHealth.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ElasticCmdLet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IndexCmdLets\ElasticGetIndexSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IndexCmdLets\ElasticSetIndexSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnapshotCmdLets\ElasticRemoveSnapshot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnapshotCmdLets\ElasticNewSnapshot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnapshotCmdLets\ElasticGetSnapshot.cs" />

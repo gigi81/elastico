@@ -36,11 +36,11 @@ namespace Elasticsearch.Powershell.Tests
 
             while(enumerator.MoveNext())
             {
-                Output.WriteLine(enumerator.Current.ToString());
+                _output.WriteLine(enumerator.Current.ToString());
                 found++;
             }
 
-            Output.WriteLine($"Found {found} records");
+            _output.WriteLine($"Found {found} records");
             Assert.Equal(Data.Length, found);
         }
 
@@ -64,13 +64,13 @@ namespace Elasticsearch.Powershell.Tests
 
             foreach (PSObject record in cmdlet.Invoke())
             {
-                Output.WriteLine(record.ToString());
+                _output.WriteLine(record.ToString());
 
                 Assert.Equal(value, record.Properties[field].Value);
                 found++;
             }
 
-            Output.WriteLine($"Found {found} records");
+            _output.WriteLine($"Found {found} records");
             Assert.Equal(count, found);
         }
 
@@ -88,13 +88,13 @@ namespace Elasticsearch.Powershell.Tests
 
             foreach(PSObject record in cmdlet.Invoke())
             {
-                Output.WriteLine(record.ToString());
+                _output.WriteLine(record.ToString());
                 Assert.NotNull(record.Properties[field]);
                 Assert.Equal(cmdlet.Fields.Length, record.Properties.Count());
                 found++;
             }
 
-            Output.WriteLine($"Found {found} records");
+            _output.WriteLine($"Found {found} records");
             Assert.Equal(Data.Length, found);
         }
 

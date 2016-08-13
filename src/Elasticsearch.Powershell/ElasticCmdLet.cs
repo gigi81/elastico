@@ -65,6 +65,8 @@ namespace Elasticsearch.Powershell
         protected void CheckResponse(IResponse response)
         {
             WriteVerbose(response.DebugInformation);
+            if (response.ServerError != null)
+                throw new Exception(response.ServerError.ToString());
             CheckException(response.OriginalException);
         }
 #endif
@@ -97,7 +99,7 @@ namespace Elasticsearch.Powershell
             while (exception != null)
             {
                 first = exception;
-                WriteVerbose("Error: " + exception.Message);
+                WriteVerbose($"Error: {exception.Message}\n");
                 exception = exception.InnerException;
             }
 

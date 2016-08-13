@@ -6,20 +6,21 @@ namespace Elasticsearch.Powershell.Tests
 {
     public class ElasticTest : IDisposable
     {
-        protected readonly ITestOutputHelper Output;
-        private readonly ElasticsearchInside.Elasticsearch Server;
+        protected readonly ITestOutputHelper _output;
+
+        private readonly ElasticsearchInside.Elasticsearch _server;
         private ElasticClient _client;
         private string _index = "searchtests" + Guid.NewGuid();
 
         protected ElasticTest(ITestOutputHelper outputHelper)
         {
-            this.Output = outputHelper;
-            this.Server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(outputHelper.WriteLine));
+            _output = outputHelper;
+            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(outputHelper.WriteLine));
         }
 
         public Uri ServerUrl
         {
-            get { return this.Server.Url; }
+            get { return _server.Url; }
         }
 
         public string[] Node
@@ -55,7 +56,7 @@ namespace Elasticsearch.Powershell.Tests
             }
             finally
             {
-                this.Server.Dispose();
+                _server.Dispose();
             }
         }
 

@@ -10,8 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Person.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ElasticIndices.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ElasticSearchTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IndicesHealthTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RepositorySnapshotTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SambaShareApi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ElasticTest.cs" />
   </ItemGroup>
 </Project>
