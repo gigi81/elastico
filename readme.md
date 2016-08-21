@@ -34,8 +34,13 @@ Elasticsearch Versions(s) Compatibility
 ============
 
 The module supports versions 1, 2 and 5 (currently in alpha stage) of elasticsearch. As long as the server API can change between versions, for compatibility reasons, the cmdlets are specific to the single versions of elasticsearch.
-So for example, instead of having a single Get-ElasticClusterHealt cmdlet, there are 3 cmdlets, more specifically Get-ElasticV1ClusterHealth, Get-ElasticV2ClusterHealth and Get-ElasticV5ClusterHealth.
-So, in order to avoid compatibility issues, you will need to know in advande the version of elasticsearch that you are dealing with.
+
+So for example, instead of having a single Get-ElasticClusterHealt cmdlet, there are 3 cmdlets, more specifically:
+- Get-ElasticV1ClusterHealth
+- Get-ElasticV2ClusterHealth
+- Get-ElasticV5ClusterHealth.
+
+In order to avoid compatibility issues, you will need to know in advance the version of elasticsearch that you are dealing with, and use the relevant cmdlet.
 
 
 Usage Examples
