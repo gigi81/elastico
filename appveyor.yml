@@ -50,6 +50,9 @@ build:
 
 test:
 
+after_test:
+  - bash <(curl -s https://codecov.io/bash)
+
 deploy_script:
   - powershell -File .\deploy.ps1
 
