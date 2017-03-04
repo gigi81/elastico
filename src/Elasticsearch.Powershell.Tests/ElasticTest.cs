@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Nest;
 using Xunit.Abstractions;
 
@@ -19,10 +20,7 @@ namespace Elasticsearch.Powershell.Tests
 
 #if ESV5
             //block until es is ready
-            var task = _server.Ready();
-
-            task.Start();
-            task.Wait();
+            _server.Ready().RunSynchronously();
 #endif
         }
 
