@@ -31,7 +31,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Types\Cluster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Types\Health.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Types\Index.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Types\Node.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Types\Repository.cs" />
   </ItemGroup>
 </Project>
