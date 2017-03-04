@@ -40,7 +40,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ElasticsearchInside, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\elasticsearch-inside.5.0.0\lib\net461\ElasticsearchInside.dll</HintPath>
+      <HintPath>..\..\packages\elasticsearch-inside.5.0.0-alpha2\lib\net451\ElasticsearchInside.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nest, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
