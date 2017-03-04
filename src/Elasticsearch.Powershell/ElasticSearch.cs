@@ -15,6 +15,7 @@ namespace Elasticsearch.Powershell
         public ElasticSearch()
         {
             this.Size = 100;
+            this.From = 0;
         }
 
         [Parameter(Position = 1, Mandatory = false, HelpMessage = "The elasticsearch query")]
@@ -28,6 +29,9 @@ namespace Elasticsearch.Powershell
 
         [Parameter(Position = 4, Mandatory = false, HelpMessage = "Number of records to return (default 100)")]
         public int Size { get; set; }
+
+        [Parameter(Position = 5, Mandatory = false, HelpMessage = "The starting from index of the hits to return (default 0)")]
+        public int From { get; set; }
 
         private static string[] GetFields(string[] fields)
         {
@@ -53,11 +57,13 @@ namespace Elasticsearch.Powershell
             var search = new SearchDescriptor<ExpandoObject>()
                                  .AllTypes()
                                  .Indices(GetIndices(this.Index))
+                                 .From(this.From)
                                  .Size(this.Size);
 #else
             var search = new SearchDescriptor<ExpandoObject>()
                                  .AllTypes()
                                  .Index(GetIndices(this.Index))
+                                 .From(this.From)
                                  .Size(this.Size);
 #endif
             if (!String.IsNullOrWhiteSpace(this.Query))
@@ -68,8 +74,10 @@ namespace Elasticsearch.Powershell
             {
 #if ESV1
                 search = search.Source(s => s.Include(include));
-#else
+#elif ESV2
                 search = search.Source(s => s.Include(i => i.Fields(include)));
+#else
+                search = search.Source(s => s.Includes(i => i.Fields(include)));
 #endif
             }
 
