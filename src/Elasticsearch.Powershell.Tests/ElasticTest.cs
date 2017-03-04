@@ -19,7 +19,10 @@ namespace Elasticsearch.Powershell.Tests
 
 #if ESV5
             //block until es is ready
-            _server.Ready().Wait();
+            var task = _server.Ready();
+
+            task.Start();
+            task.Wait();
 #endif
         }
 
