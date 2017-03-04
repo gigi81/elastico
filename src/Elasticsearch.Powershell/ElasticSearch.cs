@@ -68,8 +68,10 @@ namespace Elasticsearch.Powershell
             {
 #if ESV1
                 search = search.Source(s => s.Include(include));
-#else
+#elif ESV2
                 search = search.Source(s => s.Include(i => i.Fields(include)));
+#else
+                search = search.Source(s => s.Includes(i => i.Fields(include)));
 #endif
             }
 

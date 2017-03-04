@@ -12,7 +12,11 @@ namespace Elasticsearch.Powershell.Types
         internal Node(NodeInfo info)
         {
             this.Name = info.Name;
+#if ESV1
             this.Address = new Uri("http://" + info.HttpAddress);
+#else
+            this.Address = new Uri("http://" + info.Http.PublishAddress);
+#endif
             this.Version = info.Version;
         }
 
