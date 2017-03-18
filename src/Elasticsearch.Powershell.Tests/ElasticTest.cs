@@ -17,6 +17,10 @@ namespace Elasticsearch.Powershell.Tests
         {
             _output = outputHelper;
             _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(outputHelper.WriteLine));
+
+#if ESV5
+            _server.ReadySync();
+#endif
         }
 
         public Uri ServerUrl
