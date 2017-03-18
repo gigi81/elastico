@@ -16,10 +16,11 @@ namespace Elasticsearch.Powershell.Tests
         protected ElasticTest(ITestOutputHelper outputHelper)
         {
             _output = outputHelper;
-            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
-
 #if ESV5
+            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging());
             _server = _server.ReadySync();
+#else
+            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
 #endif
         }
 
