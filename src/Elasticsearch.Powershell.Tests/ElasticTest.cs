@@ -17,8 +17,7 @@ namespace Elasticsearch.Powershell.Tests
         {
             _output = outputHelper;
 #if ESV5
-            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging());
-            _server = _server.ReadySync();
+            _server = new ElasticsearchInside.Elasticsearch().ReadySync();
 #else
             _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
 #endif
