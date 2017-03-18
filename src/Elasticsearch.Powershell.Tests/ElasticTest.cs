@@ -16,11 +16,27 @@ namespace Elasticsearch.Powershell.Tests
         protected ElasticTest(ITestOutputHelper outputHelper)
         {
             _output = outputHelper;
-            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(outputHelper.WriteLine));
+            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
 
 #if ESV5
-            _server.ReadySync();
+            _server = _server.ReadySync();
 #endif
+        }
+
+        private void WriteToLog(string message)
+        {
+            if (String.IsNullOrWhiteSpace(message))
+                return;
+
+            _output.WriteLine(message);
+        }
+
+        private void WriteToLog(string format, params object[] args)
+        {
+            if (String.IsNullOrWhiteSpace(format))
+                return;
+
+            _output.WriteLine(format, args);
         }
 
         public Uri ServerUrl
