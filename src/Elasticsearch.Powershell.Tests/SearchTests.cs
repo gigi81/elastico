@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Management.Automation;
-using System.Threading;
-using Nest;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -35,10 +31,7 @@ namespace Elasticsearch.Powershell.Tests
             var found = 0;
 
             while(enumerator.MoveNext())
-            {
-                _output.WriteLine(enumerator.Current.ToString());
                 found++;
-            }
 
             _output.WriteLine($"Found {found} records");
             Assert.Equal(Data.Length, found);
@@ -59,7 +52,6 @@ namespace Elasticsearch.Powershell.Tests
             var cmdlet = this.CreateCmdLet<ElasticSearch>();
             cmdlet.Index = new[] { this.DefaultIndex };
             cmdlet.Query = $"{field}:{value}";
-            var enumerator = cmdlet.Invoke().GetEnumerator();
             var found = 0;
 
             foreach (PSObject record in cmdlet.Invoke())
@@ -93,6 +85,29 @@ namespace Elasticsearch.Powershell.Tests
                 Assert.Equal(cmdlet.Fields.Length, record.Properties.Count());
                 found++;
             }
+
+            _output.WriteLine($"Found {found} records");
+            Assert.Equal(Data.Length, found);
+        }
+
+        [Fact]
+        public void ScrollApiTest()
+        {
+            var cmdlet = this.CreateCmdLet<ElasticSearch>();
+            cmdlet.Index = new[] { this.DefaultIndex };
+            cmdlet.Scroll = new SwitchParameter(true);
+            var enumerator = cmdlet.Invoke().GetEnumerator();
+            enumerator.MoveNext();
+            var scrollId = (string)enumerator.Current;
+
+            Assert.True(!String.IsNullOrWhiteSpace(scrollId));
+
+            var cmdlet2 = this.CreateCmdLet<ElasticSearch>();
+            cmdlet2.ScrollId = scrollId;
+
+            var found = 0;
+            foreach (PSObject record in cmdlet2.Invoke())
+                found++;
 
             _output.WriteLine($"Found {found} records");
             Assert.Equal(Data.Length, found);
