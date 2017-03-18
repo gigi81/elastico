@@ -61,7 +61,7 @@ namespace Elasticsearch.Powershell
 
         protected override void ProcessRecord()
         {
-            if (this.ParameterSetName.Equals("Scroll"))
+            if(!String.IsNullOrEmpty(this.ScrollId))
                 ScrollInternal();
             else
                 SearchInternal();
