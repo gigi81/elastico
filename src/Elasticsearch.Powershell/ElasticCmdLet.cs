@@ -10,7 +10,7 @@ using Nest;
 
 namespace Elasticsearch.Powershell
 {
-    public class ElasticCmdlet : Cmdlet
+    public class ElasticCmdlet : PSCmdlet
     {
         private ElasticClient _client;
         private IConnectionSettingsValues _connectionSettings;
