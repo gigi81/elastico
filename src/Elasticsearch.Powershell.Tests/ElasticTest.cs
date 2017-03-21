@@ -2,11 +2,14 @@
 using System.Threading.Tasks;
 using Nest;
 using Xunit.Abstractions;
+using System.Threading;
 
 namespace Elasticsearch.Powershell.Tests
 {
     public class ElasticTest : IDisposable
     {
+        private static int _port = 9400;
+
         protected readonly ITestOutputHelper _output;
 
         private readonly ElasticsearchInside.Elasticsearch _server;
@@ -17,9 +20,9 @@ namespace Elasticsearch.Powershell.Tests
         {
             _output = outputHelper;
 #if ESV5
-            _server = new ElasticsearchInside.Elasticsearch().ReadySync();
+            _server = new ElasticsearchInside.Elasticsearch(c => c.Port(Interlocked.Increment(ref _port)).EnableLogging().LogTo(this.WriteToLog)).ReadySync();
 #else
-            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
+            _server = new ElasticsearchInside.Elasticsearch(c => c.Port(Interlocked.Increment(ref _port)).EnableLogging().LogTo(this.WriteToLog));
 #endif
         }
 
