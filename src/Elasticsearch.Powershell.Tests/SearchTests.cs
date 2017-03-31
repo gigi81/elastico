@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Elasticsearch.Powershell.Types;
+using System;
 using System.Linq;
 using System.Management.Automation;
 using Xunit;
@@ -22,19 +23,22 @@ namespace Elasticsearch.Powershell.Tests
             this.RefreshIndex();
         }
 
+        private SearchResponse GetResponse(ElasticSearch cmdlet)
+        {
+            var enumerator = cmdlet.Invoke().GetEnumerator();
+            enumerator.MoveNext();
+            return (SearchResponse)enumerator.Current;
+        }
+
         [Fact]
         public void SearchAll()
         {
             var cmdlet = this.CreateCmdLet<ElasticSearch>();
             cmdlet.Index = new[] { this.DefaultIndex };
-            var enumerator = cmdlet.Invoke().GetEnumerator();
-            var found = 0;
+            var response = GetResponse(cmdlet);
 
-            while(enumerator.MoveNext())
-                found++;
-
-            _output.WriteLine($"Found {found} records");
-            Assert.Equal(Data.Length, found);
+            Assert.Equal(Data.Length, response.Documents.Length);
+            Assert.Equal(Data.Length, response.Total);
         }
 
         [Fact]
@@ -52,18 +56,13 @@ namespace Elasticsearch.Powershell.Tests
             var cmdlet = this.CreateCmdLet<ElasticSearch>();
             cmdlet.Index = new[] { this.DefaultIndex };
             cmdlet.Query = $"{field}:{value}";
-            var found = 0;
+            var response = GetResponse(cmdlet);
 
-            foreach (PSObject record in cmdlet.Invoke())
-            {
-                _output.WriteLine(record.ToString());
-
+            foreach (PSObject record in response.Documents)
                 Assert.Equal(value, record.Properties[field].Value);
-                found++;
-            }
 
-            _output.WriteLine($"Found {found} records");
-            Assert.Equal(count, found);
+            Assert.Equal(count, response.Documents.Length);
+            Assert.Equal(count, response.Total);
         }
 
         [Fact]
@@ -76,18 +75,16 @@ namespace Elasticsearch.Powershell.Tests
             var cmdlet = this.CreateCmdLet<ElasticSearch>();
             cmdlet.Index = new[] { this.DefaultIndex };
             cmdlet.Fields = new[] { field };
-            var found = 0;
+            var response = GetResponse(cmdlet);
 
-            foreach(PSObject record in cmdlet.Invoke())
+            foreach (PSObject record in response.Documents)
             {
-                _output.WriteLine(record.ToString());
                 Assert.NotNull(record.Properties[field]);
                 Assert.Equal(cmdlet.Fields.Length, record.Properties.Count());
-                found++;
             }
 
-            _output.WriteLine($"Found {found} records");
-            Assert.Equal(Data.Length, found);
+            Assert.Equal(Data.Length, response.Documents.Length);
+            Assert.Equal(Data.Length, response.Total);
         }
 
         [Fact]
@@ -96,18 +93,21 @@ namespace Elasticsearch.Powershell.Tests
             var cmdlet = this.CreateCmdLet<ElasticSearch>();
             cmdlet.Index = new[] { this.DefaultIndex };
             cmdlet.Scroll = new SwitchParameter(true);
-            var enumerator = cmdlet.Invoke().GetEnumerator();
-            enumerator.MoveNext();
-            var scrollId = (string)enumerator.Current;
+            var response = GetResponse(cmdlet);
 
-            Assert.True(!String.IsNullOrWhiteSpace(scrollId));
+            Assert.True(!String.IsNullOrWhiteSpace(response.ScrollId));
+            Assert.Equal(Data.Length, response.Total);
 
-            var cmdlet2 = this.CreateCmdLet<ElasticSearch>();
-            cmdlet2.ScrollId = scrollId;
+            var found = response.Documents.Length;
 
-            var found = 0;
-            foreach (PSObject record in cmdlet2.Invoke())
-                found++;
+            while(found < response.Total)
+            {
+                var cmdlet2 = this.CreateCmdLet<ElasticSearch>();
+                cmdlet2.ScrollId = response.ScrollId;
+                var response2 = GetResponse(cmdlet2);
+
+                found += response2.Documents.Length;
+            }
 
             _output.WriteLine($"Found {found} records");
             Assert.Equal(Data.Length, found);

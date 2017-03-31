@@ -109,25 +109,24 @@ namespace Elasticsearch.Powershell
 
             var response = this.Client.Search<ExpandoObject>(search);
             this.CheckResponse(response);
-
-            if (this.Scroll.IsPresent)
-            {
-                WriteObject(response.ScrollId);
-            }
-            else
-            {
-                foreach (var document in response.Documents)
-                    WriteObject(document.ToPSObject());
-            }
+            this.WriteSearchResponse(response);
         }
 
         private void ScrollInternal()
         {
             var response = this.Client.Scroll<ExpandoObject>(ScrollTimeout, this.ScrollId);
             this.CheckResponse(response);
+            this.WriteSearchResponse(response);
+        }
 
-            foreach (var document in response.Documents)
-                WriteObject(document.ToPSObject());
+        private void WriteSearchResponse(ISearchResponse<ExpandoObject> response)
+        {
+            WriteObject(new Types.SearchResponse
+            {
+                ScrollId  = response.ScrollId,
+                Total     = response.Total,
+                Documents = response.Documents.Select(d => d.ToPSObject()).ToArray()
+            });
         }
     }
 }
