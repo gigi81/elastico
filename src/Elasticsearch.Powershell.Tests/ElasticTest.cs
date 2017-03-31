@@ -5,7 +5,7 @@ using Xunit.Abstractions;
 
 namespace Elasticsearch.Powershell.Tests
 {
-    public class ElasticTest : IDisposable
+    public class ElasticTest : IDisposable, Xunit.IAsyncLifetime
     {
         protected readonly ITestOutputHelper _output;
 
@@ -17,7 +17,7 @@ namespace Elasticsearch.Powershell.Tests
         {
             _output = outputHelper;
 #if ESV5
-            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog)).ReadySync();
+            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
 #else
             _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
 #endif
@@ -114,6 +114,24 @@ namespace Elasticsearch.Powershell.Tests
 #else
             this.Client.Refresh(this.DefaultIndex);
 #endif
+        }
+
+#if ESV5
+        public async Task InitializeAsync()
+        {
+            await _server.Ready();
+        }
+
+#else
+        public Task InitializeAsync()
+        {
+            return Task.CompletedTask;
+        }
+#endif
+
+        public Task DisposeAsync()
+        {
+            return Task.CompletedTask;
         }
     }
 }
