@@ -119,7 +119,7 @@ namespace Elasticsearch.Powershell.Tests
 #else
         public Task InitializeAsync()
         {
-            return Task.Run(this.Init());
+            return Task.Run(() => this.Init());
         }
 #endif
 
