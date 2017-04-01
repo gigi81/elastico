@@ -12,26 +12,34 @@ namespace Elasticsearch.Powershell
     [Cmdlet(VerbsCommon.Search, Consts.Prefix)]
     public class ElasticSearch : ElasticCmdlet
     {
+        private const string ScrollTimeout = "10s"; //10 seconds
+
         public ElasticSearch()
         {
             this.Size = 100;
             this.From = 0;
         }
 
-        [Parameter(Position = 1, Mandatory = false, HelpMessage = "The elasticsearch query")]
+        [Parameter(Position = 1, Mandatory = false, ParameterSetName = "Search", HelpMessage = "The elasticsearch query")]
         public string Query { get; set; }
 
-        [Parameter(Position = 2, Mandatory = false, HelpMessage = "One or more index name(s). You can use the wildcard '*' in the name.")]
+        [Parameter(Position = 2, Mandatory = false, ParameterSetName = "Search", HelpMessage = "One or more index name(s). You can use the wildcard '*' in the name.")]
         public string[] Index { get; set; }
 
-        [Parameter(Position = 3, Mandatory = false, HelpMessage = "The fields to return. If not specified, all fields will be returned")]
+        [Parameter(Position = 3, Mandatory = false, ParameterSetName = "Search", HelpMessage = "The fields to return. If not specified, all fields will be returned")]
         public string[] Fields { get; set; }
 
-        [Parameter(Position = 4, Mandatory = false, HelpMessage = "Number of records to return (default 100)")]
+        [Parameter(Position = 4, Mandatory = false, ParameterSetName = "Search", HelpMessage = "Number of records to return (default 100)")]
         public int Size { get; set; }
 
-        [Parameter(Position = 5, Mandatory = false, HelpMessage = "The starting from index of the hits to return (default 0)")]
+        [Parameter(Position = 5, Mandatory = false, ParameterSetName = "Search", HelpMessage = "The starting from index of the hits to return (default 0)")]
         public int From { get; set; }
+
+        [Parameter(Position = 6, Mandatory = false, ParameterSetName = "Search", HelpMessage = "Scroll Switch (enables the scroll API to retrieve a large number of records)")]
+        public SwitchParameter Scroll;
+
+        [Parameter(Position = 7, Mandatory = false, ParameterSetName = "Scroll", HelpMessage = "Scroll Id")]
+        public string ScrollId;
 
         private static string[] GetFields(string[] fields)
         {
@@ -52,6 +60,14 @@ namespace Elasticsearch.Powershell
         }
 
         protected override void ProcessRecord()
+        {
+            if(!String.IsNullOrEmpty(this.ScrollId))
+                ScrollInternal();
+            else
+                SearchInternal();
+        }
+
+        private void SearchInternal()
         {
 #if ESV1
             var search = new SearchDescriptor<ExpandoObject>()
@@ -81,11 +97,36 @@ namespace Elasticsearch.Powershell
 #endif
             }
 
+            if (this.Scroll.IsPresent)
+            {
+#if ESV1 || ESV2
+                search = search.SearchType(Net.SearchType.Scan)
+                               .Scroll(ScrollTimeout);
+#else
+                search = search.Scroll(ScrollTimeout);
+#endif
+            }
+
             var response = this.Client.Search<ExpandoObject>(search);
             this.CheckResponse(response);
+            this.WriteSearchResponse(response);
+        }
 
-            foreach (var document in response.Documents)
-                WriteObject(document.ToPSObject());
+        private void ScrollInternal()
+        {
+            var response = this.Client.Scroll<ExpandoObject>(ScrollTimeout, this.ScrollId);
+            this.CheckResponse(response);
+            this.WriteSearchResponse(response);
+        }
+
+        private void WriteSearchResponse(ISearchResponse<ExpandoObject> response)
+        {
+            WriteObject(new Types.SearchResponse
+            {
+                ScrollId  = response.ScrollId,
+                Total     = response.Total,
+                Documents = response.Documents.Select(d => d.ToPSObject()).ToArray()
+            });
         }
     }
 }

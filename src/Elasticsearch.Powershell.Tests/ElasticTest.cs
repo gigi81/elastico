@@ -2,10 +2,11 @@
 using System.Threading.Tasks;
 using Nest;
 using Xunit.Abstractions;
+using Xunit;
 
 namespace Elasticsearch.Powershell.Tests
 {
-    public class ElasticTest : IDisposable
+    public class ElasticTest : IAsyncLifetime
     {
         protected readonly ITestOutputHelper _output;
 
@@ -16,7 +17,27 @@ namespace Elasticsearch.Powershell.Tests
         protected ElasticTest(ITestOutputHelper outputHelper)
         {
             _output = outputHelper;
-            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(outputHelper.WriteLine));
+#if ESV5
+            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
+#else
+            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
+#endif
+        }
+
+        private void WriteToLog(string message)
+        {
+            if (String.IsNullOrWhiteSpace(message))
+                return;
+
+            _output.WriteLine(message);
+        }
+
+        private void WriteToLog(string format, params object[] args)
+        {
+            if (String.IsNullOrWhiteSpace(format))
+                return;
+
+            _output.WriteLine(format, args);
         }
 
         public Uri ServerUrl
@@ -49,18 +70,6 @@ namespace Elasticsearch.Powershell.Tests
 
         public string DefaultIndex {  get { return _index; } }
 
-        public void Dispose()
-        {
-            try
-            {
-                this.DisposeInternal();
-            }
-            finally
-            {
-                _server.Dispose();
-            }
-        }
-
         protected TCmdLet CreateCmdLet<TCmdLet>() where TCmdLet : ElasticCmdlet, new()
         {
             var ret = new TCmdLet();
@@ -69,6 +78,10 @@ namespace Elasticsearch.Powershell.Tests
         }
 
         protected virtual void DisposeInternal()
+        {
+        }
+
+        protected virtual void Init()
         {
         }
 
@@ -94,6 +107,35 @@ namespace Elasticsearch.Powershell.Tests
 #else
             this.Client.Refresh(this.DefaultIndex);
 #endif
+        }
+
+#if ESV5
+        public async Task InitializeAsync()
+        {
+            await _server.Ready();
+            await Task.Run(() => this.Init());
+        }
+
+#else
+        public Task InitializeAsync()
+        {
+            return Task.Run(() => this.Init());
+        }
+#endif
+
+        public Task DisposeAsync()
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    this.DisposeInternal();
+                }
+                finally
+                {
+                    _server.Dispose();
+                }
+            });
         }
     }
 }

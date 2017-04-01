@@ -16,11 +16,15 @@ namespace Elasticsearch.Powershell.Tests
         public RepositorySnapshotTests(ITestOutputHelper output)
             : base(output)
         {
+        }
+
+        protected override void Init()
+        {
             _shareDiskPath = Path.GetTempPath();
             _shareName = Guid.NewGuid().ToString();
             _shareNetworkPath = $"\\\\{Environment.MachineName}\\{_shareName}";
 
-            output.WriteLine($"Creating samba share '{_shareNetworkPath}' for folder '{_shareDiskPath}'");
+            _output.WriteLine($"Creating samba share '{_shareNetworkPath}' for folder '{_shareDiskPath}'");
             SambaShareApi.CreateShare(_shareDiskPath, _shareName, "", false, SharePermissions.All);
         }
 
