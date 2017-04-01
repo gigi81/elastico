@@ -2,10 +2,11 @@
 using System.Threading.Tasks;
 using Nest;
 using Xunit.Abstractions;
+using Xunit;
 
 namespace Elasticsearch.Powershell.Tests
 {
-    public class ElasticTest : IDisposable, Xunit.IAsyncLifetime
+    public class ElasticTest : IAsyncLifetime
     {
         protected readonly ITestOutputHelper _output;
 
@@ -69,18 +70,6 @@ namespace Elasticsearch.Powershell.Tests
 
         public string DefaultIndex {  get { return _index; } }
 
-        public void Dispose()
-        {
-            try
-            {
-                this.DisposeInternal();
-            }
-            finally
-            {
-                _server.Dispose();
-            }
-        }
-
         protected TCmdLet CreateCmdLet<TCmdLet>() where TCmdLet : ElasticCmdlet, new()
         {
             var ret = new TCmdLet();
@@ -89,6 +78,10 @@ namespace Elasticsearch.Powershell.Tests
         }
 
         protected virtual void DisposeInternal()
+        {
+        }
+
+        protected virtual void Init()
         {
         }
 
@@ -120,18 +113,29 @@ namespace Elasticsearch.Powershell.Tests
         public async Task InitializeAsync()
         {
             await _server.Ready();
+            this.Init();
         }
 
 #else
         public Task InitializeAsync()
         {
-            return Task.CompletedTask;
+            return Task.Run(this.Init());
         }
 #endif
 
         public Task DisposeAsync()
         {
-            return Task.CompletedTask;
+            return Task.Run(() =>
+            {
+                try
+                {
+                    this.DisposeInternal();
+                }
+                finally
+                {
+                    _server.Dispose();
+                }
+            });
         }
     }
 }

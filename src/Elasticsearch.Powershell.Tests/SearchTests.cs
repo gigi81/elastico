@@ -14,7 +14,11 @@ namespace Elasticsearch.Powershell.Tests
         public ElasticSearchTests(ITestOutputHelper output)
             : base(output)
         {
-            foreach(var person in Data)
+        }
+
+        protected override void Init()
+        {
+            foreach (var person in Data)
             {
                 var insertResponse = this.Client.Index(person);
                 CheckResponse(insertResponse);
