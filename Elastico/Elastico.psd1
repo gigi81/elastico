@@ -11,7 +11,6 @@ DotNetFrameworkVersion = '4.5.2'
 CLRVersion = '4.0'
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 NestedModules = @(
-    'bin\V1\Elasticsearch.Powershell.V1.dll',
     'bin\V2\Elasticsearch.Powershell.V2.dll',
     'bin\V5\Elasticsearch.Powershell.V5.dll'
 )
