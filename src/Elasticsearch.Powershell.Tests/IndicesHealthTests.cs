@@ -43,14 +43,10 @@ namespace Elasticsearch.Powershell.Tests
 
             //check index health
             var get = this.CreateCmdLet<IndexCmdLets.ElasticGetIndex>();
-#if ESV1
-            Assert.Equal(1, get.Invoke().Cast<Types.Index>().Count(i => i.Name.Equals(index)));
-#else
             get.Index = new[] { index };
             var getEnumerator = get.Invoke().GetEnumerator();
             Assert.True(getEnumerator.MoveNext());
             Assert.False(getEnumerator.MoveNext());
-#endif
 
             //delete index
             var delete = this.CreateCmdLet<IndexCmdLets.ElasticRemoveIndex>();

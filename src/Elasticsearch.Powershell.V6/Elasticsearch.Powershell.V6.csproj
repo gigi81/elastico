@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0</TargetFrameworks>
-		<DefineConstants>ESV5</DefineConstants>
+		<DefineConstants>ESV6</DefineConstants>
 		<NoWarn>1701;1702;1705;1591</NoWarn>
-		<DocumentationFile>bin\Elasticsearch.Powershell.V5.xml</DocumentationFile>
+		<DocumentationFile>bin\Elasticsearch.Powershell.V6.xml</DocumentationFile>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     </PropertyGroup>
 	
@@ -12,7 +12,7 @@
     </ItemGroup>
 	
     <ItemGroup>
-      <PackageReference Include="NEST" Version="5.*" />
+      <PackageReference Include="NEST" Version="6.*" />
 	    <PackageReference Include="PowerShellStandard.Library" Version="5.1.0" />
       <PackageReference Include="XmlDoc2CmdletDoc" Version="0.2.12">
         <PrivateAssets>all</PrivateAssets>
@@ -25,6 +25,6 @@
 	  	<ModuleFiles Include="$(OutputPath)*.dll;$(OutputPath)*-Help.xml" Exclude="$(OutputPath)System*.dll;$(OutputPath)Microsoft*.dll" />
 	  </ItemGroup>
 
-	  <Copy SourceFiles="@(ModuleFiles)" DestinationFolder="$(SolutionDir)Elastico\bin\V5" />
+	  <Copy SourceFiles="@(ModuleFiles)" DestinationFolder="$(SolutionDir)Elastico\bin\V6" />
 	</Target>
 </Project>

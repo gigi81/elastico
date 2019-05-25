@@ -19,15 +19,9 @@ namespace Elasticsearch.Powershell.IndexCmdLets
             var create = this.Client.CreateIndex(this.Index);
             this.CheckResponse(create);
 
-#if ESV1
-            var cat = this.Client.CatIndices(new CatIndicesRequest());
-            this.CheckResponse(cat);
-            WriteObject(new Types.Index(cat.Records.FirstOrDefault(c => c.Index.Equals(this.Index))));
-#else
             var cat = this.Client.CatIndices(new CatIndicesRequest(this.Index));
             this.CheckResponse(cat);
             WriteObject(new Types.Index(cat.Records.First()));
-#endif
         }
     }
 }

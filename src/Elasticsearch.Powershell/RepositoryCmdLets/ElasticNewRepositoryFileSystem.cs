@@ -24,20 +24,6 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
         [Parameter(Position = 4, Mandatory = false, HelpMessage = "Set repository chunk size")]
         public string ChunkSize { get; set; }
 
-#if ESV1
-        private IDictionary<string, object> GetSettings()
-        {
-            // https://www.elastic.co/guide/en/elasticsearch/reference/1.7/modules-snapshots.html
-            var ret = new Dictionary<string, object>();
-
-            ret.Add("location", this.Location);
-            ret.Add("compress", this.Compress ?? true ? "true" : "false");
-            if (!String.IsNullOrWhiteSpace(this.ChunkSize))
-                ret.Add("chunk_size", this.ChunkSize);
-
-            return ret;
-        }
-#else
         private FileSystemRepositorySettings GetSettings()
         {
             var ret = new FileSystemRepositorySettings(this.Location)
@@ -50,20 +36,12 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
 
             return ret;
         }
-#endif
         protected override void ProcessRecord()
         {
             //create repository
             var request = new CreateRepositoryRequest(this.Name)
             {
-#if ESV1
-                Repository = new FileSystemRepository
-                {
-                    Settings = this.GetSettings()
-                }
-#else
                 Repository = new FileSystemRepository(this.GetSettings())
-#endif
             };
 
             var response = this.Client.CreateRepository(request);

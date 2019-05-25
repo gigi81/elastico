@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Management.Automation;
-#if ESV1
-using Elasticsearch.Net.ConnectionPool;
-#else
 using Elasticsearch.Net;
-#endif
 using Nest;
 
 namespace Elasticsearch.Powershell
@@ -55,13 +51,6 @@ namespace Elasticsearch.Powershell
             _client = null;
         }
 
-#if ESV1
-        protected void CheckResponse(IResponse response)
-        {
-            WriteVerbose(response.RequestInformation?.Metrics?.ToString());
-            CheckException(response.RequestInformation?.OriginalException);
-        }
-#else
         protected void CheckResponse(IResponse response)
         {
             WriteVerbose(response.DebugInformation);
@@ -69,17 +58,6 @@ namespace Elasticsearch.Powershell
                 throw new Exception(response.ServerError.ToString());
             CheckException(response.OriginalException);
         }
-#endif
-
-#if ESV1
-        protected static string[] GetIndices(string[] index)
-        {
-            if (index == null || index.Length == 0)
-                return new[] { "*" };
-
-            return index;
-        }
-#else
         protected Indices GetIndices(string[] index)
         {
             if (index == null || index.Length == 0)
@@ -87,7 +65,6 @@ namespace Elasticsearch.Powershell
 
             return Indices.Parse(String.Join(",", index));
         }
-#endif
 
         private void CheckException(Exception exception)
         {
