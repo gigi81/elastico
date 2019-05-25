@@ -4,6 +4,7 @@
 		<DefineConstants>ESV2</DefineConstants>
 		<NoWarn>1701;1702;1705;1591</NoWarn>
 		<DocumentationFile>bin\Elasticsearch.Powershell.V2.xml</DocumentationFile>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     </PropertyGroup>
 	
     <ItemGroup>
@@ -15,4 +16,13 @@
       <PackageReference Include="PowerShellStandard.Library" Version="3.0.0-preview-01" />
       <PackageReference Include="XmlDoc2CmdletDoc" Version="0.2.9" />
     </ItemGroup>
+	
+	<Target Name="CopyToModuleFolder" BeforeTargets="AfterBuild" Condition="$(Configuration) == 'Release'">
+	  <ItemGroup>
+	  	<ModuleFiles Include="$(OutputPath)*.dll;$(OutputPath)*-Help.xml"
+					 Exclude="$(OutputPath)System*.dll;$(OutputPath)Microsoft*.dll" />
+	  </ItemGroup>
+
+	  <Copy SourceFiles="@(ModuleFiles)" DestinationFolder="$(SolutionDir)Elastico\bin\V2" />
+	</Target>
 </Project>
