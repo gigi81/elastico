@@ -13,7 +13,7 @@ CLRVersion = '4.0'
 NestedModules = @(
     'bin\V2\Elasticsearch.Powershell.V2.dll',
     'bin\V5\Elasticsearch.Powershell.V5.dll',
-	'bin\V5\Elasticsearch.Powershell.V6.dll'
+	'bin\V6\Elasticsearch.Powershell.V6.dll'
 )
 # HelpInfo URI of this module
 HelpInfoURI = 'http://www.github.com/gigi81/elastico'
