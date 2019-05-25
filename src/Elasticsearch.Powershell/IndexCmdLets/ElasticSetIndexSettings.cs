@@ -5,8 +5,6 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using Nest;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Elasticsearch.Powershell.IndexCmdLets
 {
@@ -24,21 +22,12 @@ namespace Elasticsearch.Powershell.IndexCmdLets
 
         protected override void ProcessRecord()
         {
-#if ESV1
-            var request = new UpdateSettingsRequest()
-            {
-                Index = this.Index
-            };
-
-            var response = this.Client.UpdateSettings(request.SetJsonProperties(this.Settings.ToDictionary()));
-#else
             var request = new UpdateIndexSettingsRequest(this.Index)
             {
                 IndexSettings = new DynamicIndexSettings(this.Settings.ToDictionary())
             };
 
             var response = this.Client.UpdateIndexSettings(request);
-#endif
             this.CheckResponse(response);
         }
     }

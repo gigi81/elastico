@@ -20,7 +20,11 @@ namespace Elasticsearch.Powershell.Tests
         {
             foreach (var person in Data)
             {
+#if ESV2 || ESV5
                 var insertResponse = this.Client.Index(person);
+#else
+                var insertResponse = this.Client.IndexDocument(person);
+#endif
                 CheckResponse(insertResponse);
             }
 

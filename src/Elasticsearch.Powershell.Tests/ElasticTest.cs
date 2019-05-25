@@ -17,11 +17,7 @@ namespace Elasticsearch.Powershell.Tests
         protected ElasticTest(ITestOutputHelper outputHelper)
         {
             _output = outputHelper;
-#if ESV5
             _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
-#else
-            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
-#endif
         }
 
         private void WriteToLog(string message)
@@ -58,12 +54,7 @@ namespace Elasticsearch.Powershell.Tests
                     return _client;
 
                 var settings = new ConnectionSettings(this.ServerUrl);
-#if ESV1
-                settings.SetDefaultIndex(this.DefaultIndex);
-#else
                 settings.DefaultIndex(this.DefaultIndex);
-#endif
-
                 return _client = new ElasticClient(settings);
             }
         }
@@ -87,11 +78,7 @@ namespace Elasticsearch.Powershell.Tests
 
         protected void CheckResponse(IResponse response)
         {
-#if ESV1
-            var exception = response?.RequestInformation?.OriginalException;
-#else
             var exception = response.OriginalException;
-#endif
             if (!response.IsValid)
                 throw exception ?? new Exception("Request failed");
         }
@@ -102,24 +89,19 @@ namespace Elasticsearch.Powershell.Tests
         /// </summary>
         protected void RefreshIndex()
         {
-#if ESV1
-            this.Client.Refresh(i => i.Index(this.DefaultIndex));
-#else
             this.Client.Refresh(this.DefaultIndex);
-#endif
         }
 
-#if ESV5
+#if ESV2
+        public Task InitializeAsync()
+        {
+            return Task.Run(() => this.Init());
+        }
+#else
         public async Task InitializeAsync()
         {
             await _server.Ready();
             await Task.Run(() => this.Init());
-        }
-
-#else
-        public Task InitializeAsync()
-        {
-            return Task.Run(() => this.Init());
         }
 #endif
 

@@ -1,5 +1,5 @@
 # version format
-version: 0.6.0.{build}
+version: 1.0.0.{build}
 
 environment:
   powershellgallery_apikey:
@@ -15,7 +15,7 @@ branches:
 skip_tags: true
 
 # Build worker image (VM template)
-image: Visual Studio 2015
+image: Visual Studio 2017
 
 # build cache to preserve files/folders between builds
 cache:
@@ -25,13 +25,15 @@ cache:
 init:
   - git config --global core.autocrlf input
 
-# enable patching of AssemblyInfo.* files
-assembly_info:
+# enable patching of csproj files
+dotnet_csproj:
   patch: true
-  file: AssemblyInfo.*
-  assembly_version: "{version}"
-  assembly_file_version: "{version}"
-  assembly_informational_version: "{version}"
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
 
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform: Any CPU

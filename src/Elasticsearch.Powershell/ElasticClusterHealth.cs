@@ -15,11 +15,7 @@ namespace Elasticsearch.Powershell
 
         protected override void ProcessRecord()
         {
-#if ESV1
-            var health = this.Client.ClusterHealth(h => h.Indices(GetIndices(this.Index)));
-#else
             var health = this.Client.ClusterHealth(h => h.Index(GetIndices(this.Index)));
-#endif
             this.CheckResponse(health);
 
             WriteObject(new Types.Cluster
@@ -33,7 +29,7 @@ namespace Elasticsearch.Powershell
                 NumberOfNodes = health.NumberOfNodes,
                 NumberOfPendingTasks = health.NumberOfPendingTasks,
                 RelocatingShards = health.RelocatingShards,
-                Status = health.Status,
+                Status = health.Status.ToString(),
                 UnassignedShards = health.UnassignedShards
             });
         }

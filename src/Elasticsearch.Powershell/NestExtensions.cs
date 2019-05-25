@@ -17,32 +17,10 @@ namespace Elasticsearch.Powershell
             {
                 Name = name,
                 Type = repo.Type,
-#if !ESV1
                 Settings = response.GetSettings(name)
-#endif
             };
         }
 
-#if ESV1
-        public static string ToNames(this string[] names)
-        {
-            if (names == null)
-                throw new ArgumentNullException(nameof(names));
-
-            if (names.Length == 0)
-                throw new ArgumentException(nameof(names));
-
-            return String.Join(",", names.Where(n => !String.IsNullOrWhiteSpace(n)));
-        }
-
-        public static string ToNames(this string[] names, string defaultName)
-        {
-            if (names == null || names.Length == 0)
-                return new[] { defaultName }.ToNames();
-
-            return String.Join(",", names);
-        }
-#else
         public static object GetSettings(this IGetRepositoryResponse response, string name)
         {
             switch (response.Repositories[name].Type.ToLowerInvariant())
@@ -85,6 +63,5 @@ namespace Elasticsearch.Powershell
 
             return names.ToNames();
         }
-#endif
     }
 }

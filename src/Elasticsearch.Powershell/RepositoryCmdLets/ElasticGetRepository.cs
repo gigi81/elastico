@@ -15,31 +15,6 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
         [Parameter(Position = 1, Mandatory = false, HelpMessage = "One or more repository name(s)")]
         public string[] Repository { get; set; }
 
-#if ESV1
-        protected IEnumerable<IGetRepositoryRequest> GetRequest()
-        {
-            if (this.Repository == null || this.Repository.Length == 0)
-                return new[] { new GetRepositoryRequest() };
-
-            return this.Repository.Select(r => new GetRepositoryRequest(r));
-        }
-
-        protected override void ProcessRecord()
-        {
-            foreach (var request in this.GetRequest())
-            {
-                var response = this.Client.GetRepository(request);
-                CheckResponse(response);
-
-                foreach (var repo in response.Repositories)
-                    WriteObject(new Types.Repository()
-                    {
-                        Name = repo.Key,
-                        Settings = repo.Value.Settings
-                    });
-            }
-        }
-#else
         protected IGetRepositoryRequest GetRequest(GetRepositoryDescriptor descriptor)
         {
             if (this.Repository == null || this.Repository.Length == 0)
@@ -56,6 +31,5 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
             foreach (var repo in response.Repositories.Keys)
                 WriteObject(response.GetRepository(repo));
         }
-#endif
     }
 }

@@ -69,28 +69,19 @@ namespace Elasticsearch.Powershell
 
         private void SearchInternal()
         {
-#if ESV1
-            var search = new SearchDescriptor<ExpandoObject>()
-                                 .AllTypes()
-                                 .Indices(GetIndices(this.Index))
-                                 .From(this.From)
-                                 .Size(this.Size);
-#else
             var search = new SearchDescriptor<ExpandoObject>()
                                  .AllTypes()
                                  .Index(GetIndices(this.Index))
                                  .From(this.From)
                                  .Size(this.Size);
-#endif
+
             if (!String.IsNullOrWhiteSpace(this.Query))
                 search = search.Query(q => q.QueryString(s => s.Query(this.Query)));
 
             var include = GetFields(this.Fields);
             if (include != null)
             {
-#if ESV1
-                search = search.Source(s => s.Include(include));
-#elif ESV2
+#if ESV2
                 search = search.Source(s => s.Include(i => i.Fields(include)));
 #else
                 search = search.Source(s => s.Includes(i => i.Fields(include)));
@@ -99,7 +90,7 @@ namespace Elasticsearch.Powershell
 
             if (this.Scroll.IsPresent)
             {
-#if ESV1 || ESV2
+#if ESV2
                 search = search.SearchType(Net.SearchType.Scan)
                                .Scroll(ScrollTimeout);
 #else

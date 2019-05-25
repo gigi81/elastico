@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net461</TargetFrameworks>
-		<DefineConstants>ESV2</DefineConstants>
+      <TargetFrameworks>net461</TargetFrameworks>
+	  <DefineConstants>ESV6</DefineConstants>
     </PropertyGroup>
 	
     <ItemGroup>
@@ -9,13 +9,13 @@
     </ItemGroup>
 	
     <ItemGroup>
-      <PackageReference Include="elasticsearch-inside" Version="2.*" />
-      <PackageReference Include="NEST" Version="2.*" />
+      <PackageReference Include="elasticsearch-inside" Version="6.*" />
+      <PackageReference Include="NEST" Version="6.*" />
       <PackageReference Include="PowerShellStandard.Library" Version="5.1.0" />
       <PackageReference Include="xunit" Version="2.4.1" />
     </ItemGroup>
 	
-    <ItemGroup>
-      <ProjectReference Include="..\Elasticsearch.Powershell.V2\Elasticsearch.Powershell.V2.csproj" />
+	<ItemGroup>
+      <ProjectReference Include="..\Elasticsearch.Powershell.V6\Elasticsearch.Powershell.V6.csproj" />
     </ItemGroup>
 </Project>

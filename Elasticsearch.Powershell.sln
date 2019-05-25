@@ -1,29 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Elasticsearch.Powershell", "src\Elasticsearch.Powershell\Elasticsearch.Powershell.shproj", "{E0EAF9B3-3292-4070-A138-33963DD0297C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Powershell.V1", "src\Elasticsearch.Powershell.V1\Elasticsearch.Powershell.V1.csproj", "{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Elasticsearch.Powershell.Tests", "src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.shproj", "{81107053-A24F-4415-8FD4-AEDF79622FB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Powershell.Tests.V1", "src\Elasticsearch.Powershell.Tests.V1\Elasticsearch.Powershell.Tests.V1.csproj", "{34B3DFEE-6900-4310-8534-BFABAAA77FB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elasticsearch.Powershell.V2", "src\Elasticsearch.Powershell.V2\Elasticsearch.Powershell.V2.csproj", "{8AADCAE0-6C3E-4043-BBBC-6836B5F287D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Powershell.V2", "src\Elasticsearch.Powershell.V2\Elasticsearch.Powershell.V2.csproj", "{8AADCAE0-6C3E-4043-BBBC-6836B5F287D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elasticsearch.Powershell.Tests.V2", "src\Elasticsearch.Powershell.Tests.V2\Elasticsearch.Powershell.Tests.V2.csproj", "{7E53B638-0F5D-4773-BD38-1AF9C16B5114}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Powershell.Tests.V2", "src\Elasticsearch.Powershell.Tests.V2\Elasticsearch.Powershell.Tests.V2.csproj", "{7E53B638-0F5D-4773-BD38-1AF9C16B5114}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elasticsearch.Powershell.V5", "src\Elasticsearch.Powershell.V5\Elasticsearch.Powershell.V5.csproj", "{80F98539-3D66-459C-B625-B219C3919E3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Powershell.V5", "src\Elasticsearch.Powershell.V5\Elasticsearch.Powershell.V5.csproj", "{80F98539-3D66-459C-B625-B219C3919E3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elasticsearch.Powershell.Tests.V5", "src\Elasticsearch.Powershell.Tests.V5\Elasticsearch.Powershell.Tests.V5.csproj", "{0A53B22B-B778-48B5-A654-E00A7433CBCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Powershell.Tests.V5", "src\Elasticsearch.Powershell.Tests.V5\Elasticsearch.Powershell.Tests.V5.csproj", "{0A53B22B-B778-48B5-A654-E00A7433CBCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elasticsearch.Powershell.V6", "src\Elasticsearch.Powershell.V6\Elasticsearch.Powershell.V6.csproj", "{E0391470-6EBD-438A-A4FC-A04DE9E4C0B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elasticsearch.Powershell.Tests.V6", "src\Elasticsearch.Powershell.Tests.V6\Elasticsearch.Powershell.Tests.V6.csproj", "{010CADB7-A9D9-47C6-8CF6-334BED20593A}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{0a53b22b-b778-48b5-a654-e00a7433cbce}*SharedItemsImports = 4
-		src\Elasticsearch.Powershell\Elasticsearch.Powershell.projitems*{2ff62e01-19b4-4c2e-b26a-e21e6f2a6910}*SharedItemsImports = 4
-		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{34b3dfee-6900-4310-8534-bfabaaa77fb8}*SharedItemsImports = 4
 		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{7e53b638-0f5d-4773-bd38-1af9c16b5114}*SharedItemsImports = 4
 		src\Elasticsearch.Powershell\Elasticsearch.Powershell.projitems*{80f98539-3d66-459c-b625-b219c3919e3d}*SharedItemsImports = 4
 		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{81107053-a24f-4415-8fd4-aedf79622fb0}*SharedItemsImports = 13
@@ -35,14 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FF62E01-19B4-4C2E-B26A-E21E6F2A6910}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34B3DFEE-6900-4310-8534-BFABAAA77FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34B3DFEE-6900-4310-8534-BFABAAA77FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34B3DFEE-6900-4310-8534-BFABAAA77FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34B3DFEE-6900-4310-8534-BFABAAA77FB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8AADCAE0-6C3E-4043-BBBC-6836B5F287D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8AADCAE0-6C3E-4043-BBBC-6836B5F287D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AADCAE0-6C3E-4043-BBBC-6836B5F287D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,8 +49,19 @@ Global
 		{0A53B22B-B778-48B5-A654-E00A7433CBCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A53B22B-B778-48B5-A654-E00A7433CBCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A53B22B-B778-48B5-A654-E00A7433CBCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0391470-6EBD-438A-A4FC-A04DE9E4C0B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0391470-6EBD-438A-A4FC-A04DE9E4C0B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0391470-6EBD-438A-A4FC-A04DE9E4C0B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0391470-6EBD-438A-A4FC-A04DE9E4C0B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{010CADB7-A9D9-47C6-8CF6-334BED20593A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{010CADB7-A9D9-47C6-8CF6-334BED20593A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{010CADB7-A9D9-47C6-8CF6-334BED20593A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{010CADB7-A9D9-47C6-8CF6-334BED20593A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE4AC736-BA17-473E-97F6-00F1B4DC0061}
 	EndGlobalSection
 EndGlobal
