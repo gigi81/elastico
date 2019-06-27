@@ -12,12 +12,11 @@ namespace Elasticsearch.Powershell
     [Cmdlet(VerbsCommon.Search, Consts.Prefix)]
     public class ElasticSearch : ElasticCmdlet
     {
-        private const string ScrollTimeout = "10s"; //10 seconds
-
         public ElasticSearch()
         {
             this.Size = 100;
             this.From = 0;
+            this.ScrollTimeout = "60s";
         }
 
         [Parameter(Position = 1, Mandatory = false, ParameterSetName = "Search", HelpMessage = "The elasticsearch query")]
@@ -40,6 +39,10 @@ namespace Elasticsearch.Powershell
 
         [Parameter(Position = 7, Mandatory = false, ParameterSetName = "Scroll", HelpMessage = "Scroll Id")]
         public string ScrollId;
+
+        [Parameter(Position = 7, Mandatory = false, ParameterSetName = "Search", HelpMessage = "Scroll Timeout in seconds (default 60s)")]
+        [Parameter(Position = 8, Mandatory = false, ParameterSetName = "Scroll", HelpMessage = "Scroll Timeout in seconds (default 60s)")]
+        public string ScrollTimeout { get; set; }
 
         private static string[] GetFields(string[] fields)
         {
