@@ -1,6 +1,4 @@
-﻿using System;
-using System.Management.Automation;
-using Nest;
+﻿using System.Management.Automation;
 
 namespace Elasticsearch.Powershell
 {
