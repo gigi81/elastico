@@ -29,6 +29,9 @@ namespace Elasticsearch.Powershell
         [Parameter(Mandatory = false, HelpMessage = "Path to client certificate used to authenticate all HTTP requests")]
         public string CertificatePath { get; set; }
 
+        [Parameter(HelpMessage = "Specify this switch to disable ssl certificate validation")]
+        public SwitchParameter DisableSslCertificateValidation { get; set; }
+
         protected IElasticClient Client
         {
             get
@@ -71,6 +74,9 @@ namespace Elasticsearch.Powershell
                 WriteVerbose($"Using client certificate {this.CertificatePath}\n");
                 ret.ClientCertificate(this.CertificatePath);
             }
+
+            if(this.DisableSslCertificateValidation.IsPresent)
+                ret.ServerCertificateValidationCallback((o, certificate, chain, errors) => true);
 
             return ret;
         }
