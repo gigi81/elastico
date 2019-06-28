@@ -16,7 +16,7 @@ namespace Elasticsearch.Powershell
         {
             this.Size = 100;
             this.From = 0;
-            this.ScrollTimeout = 60;
+            this.ScrollTimeout = 10;
         }
 
         [Parameter(Position = 1, Mandatory = false, ParameterSetName = "Search", HelpMessage = "The elasticsearch query")]
