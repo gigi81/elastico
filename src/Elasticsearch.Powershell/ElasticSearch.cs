@@ -40,8 +40,8 @@ namespace Elasticsearch.Powershell
         [Parameter(Position = 1, Mandatory = false, ParameterSetName = "Scroll", HelpMessage = "Scroll Id")]
         public string ScrollId;
 
-        [Parameter(Position = 2, Mandatory = false, ParameterSetName = "Scroll", HelpMessage = "Scroll Timeout in seconds (default 60 seconds)")]
-        [Parameter(Position = 7, Mandatory = false, ParameterSetName = "Search", HelpMessage = "Scroll Timeout in seconds (default 60 seconds)")]
+        [Parameter(Position = 2, Mandatory = false, ParameterSetName = "Scroll", HelpMessage = "Scroll Timeout in seconds (default 10 seconds)")]
+        [Parameter(Position = 7, Mandatory = false, ParameterSetName = "Search", HelpMessage = "Scroll Timeout in seconds (default 10 seconds)")]
         public int ScrollTimeout { get; set; }
 
         private static string[] GetFields(string[] fields)
