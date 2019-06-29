@@ -1,0 +1,44 @@
+name: 1.0.2.$(Rev:.r)
+
+variables:
+  buildConfiguration: Release
+
+resources:
+- repo: self
+  clean: true
+
+pool:
+  name: Hosted VS2017
+  demands:
+  - msbuild
+  - visualstudio
+
+steps:
+- task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
+  displayName: 'Version .NET Core Assemblies'
+
+- task: richardfennellBM.BM-VSTS-Versioning-Task.Version-PowerShellModule-Task.VersionPowerShellModule@2
+  displayName: 'Version PowerShell Modules'
+  
+- task: MSBuild@1
+  inputs:
+    solution: Elasticsearch.Powershell.sln
+    platform: Any CPU
+    configuration: $(buildConfiguration)
+    restoreNugetPackages: true
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+#- task: PowerShell@2
+#  inputs:
+#    targetType: filePath
+#    filePath: deploy.ps1
+
+- task: PowerShell@2
+  inputs:
+    targetType: filePath
+    filePath: generate-doc.ps1
