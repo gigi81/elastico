@@ -22,9 +22,7 @@ steps:
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
-  inputs:
-    command: restore
-    
+
 - task: MSBuild@1
   inputs:
     solution: Elasticsearch.Powershell.sln
