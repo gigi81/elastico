@@ -19,13 +19,17 @@ steps:
 
 - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-PowerShellModule-Task.VersionPowerShellModule@2
   displayName: 'Version PowerShell Modules'
-  
+  inputs:
+    Path: Elastico/Elastico.psd1
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+
 - task: MSBuild@1
   inputs:
     solution: Elasticsearch.Powershell.sln
     platform: Any CPU
     configuration: $(buildConfiguration)
-    restoreNugetPackages: true
 
 - task: DotNetCoreCLI@2
   inputs:
