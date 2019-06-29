@@ -12,12 +12,11 @@ namespace Elasticsearch.Powershell
     [Cmdlet(VerbsCommon.Search, Consts.Prefix)]
     public class ElasticSearch : ElasticCmdlet
     {
-        private const string ScrollTimeout = "10s"; //10 seconds
-
         public ElasticSearch()
         {
             this.Size = 100;
             this.From = 0;
+            this.ScrollTimeout = 10;
         }
 
         [Parameter(Position = 1, Mandatory = false, ParameterSetName = "Search", HelpMessage = "The elasticsearch query")]
@@ -38,8 +37,12 @@ namespace Elasticsearch.Powershell
         [Parameter(Position = 6, Mandatory = false, ParameterSetName = "Search", HelpMessage = "Scroll Switch (enables the scroll API to retrieve a large number of records)")]
         public SwitchParameter Scroll;
 
-        [Parameter(Position = 7, Mandatory = false, ParameterSetName = "Scroll", HelpMessage = "Scroll Id")]
+        [Parameter(Position = 1, Mandatory = false, ParameterSetName = "Scroll", HelpMessage = "Scroll Id")]
         public string ScrollId;
+
+        [Parameter(Position = 2, Mandatory = false, ParameterSetName = "Scroll", HelpMessage = "Scroll Timeout in seconds (default 10 seconds)")]
+        [Parameter(Position = 7, Mandatory = false, ParameterSetName = "Search", HelpMessage = "Scroll Timeout in seconds (default 10 seconds)")]
+        public int ScrollTimeout { get; set; }
 
         private static string[] GetFields(string[] fields)
         {
@@ -92,9 +95,9 @@ namespace Elasticsearch.Powershell
             {
 #if ESV2
                 search = search.SearchType(Net.SearchType.Scan)
-                               .Scroll(ScrollTimeout);
+                               .Scroll(new TimeSpan(0, 0, ScrollTimeout));
 #else
-                search = search.Scroll(ScrollTimeout);
+                search = search.Scroll(new TimeSpan(0, 0, ScrollTimeout));
 #endif
             }
 
@@ -105,7 +108,7 @@ namespace Elasticsearch.Powershell
 
         private void ScrollInternal()
         {
-            var response = this.Client.Scroll<ExpandoObject>(ScrollTimeout, this.ScrollId);
+            var response = this.Client.Scroll<ExpandoObject>(new TimeSpan(0, 0, ScrollTimeout), this.ScrollId);
             this.CheckResponse(response);
             this.WriteSearchResponse(response);
         }

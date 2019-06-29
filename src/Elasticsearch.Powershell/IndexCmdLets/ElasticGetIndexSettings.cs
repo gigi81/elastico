@@ -18,8 +18,8 @@ namespace Elasticsearch.Powershell.IndexCmdLets
             var response = this.Client.GetIndexSettings(r => r.Index(this.Index));
             this.CheckResponse(response);
 
-            foreach(var state in response.Indices.Values)
-                WriteObject(new Hashtable((IDictionary) state.Settings));
+            foreach (var state in response.Indices.Values)
+                WriteObject(state.Settings?.ReflectToPSObject());
         }
     }
 }

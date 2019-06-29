@@ -41,5 +41,18 @@ namespace Elasticsearch.Powershell
         {
             return property.GetCustomAttributes(typeof(TAttribute), true).FirstOrDefault() as TAttribute;
         }
+
+        public static PSObject ReflectToPSObject<T>(this T obj)
+        {
+            if (obj == null)
+                return null;
+
+            var record = new PSObject();
+
+            foreach (var field in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance))
+                record.Properties.Add(new PSNoteProperty(field.Name, field.GetValue(obj)));
+
+            return record;
+        }
     }
 }

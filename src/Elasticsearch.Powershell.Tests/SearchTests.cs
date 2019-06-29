@@ -28,6 +28,7 @@ namespace Elasticsearch.Powershell.Tests
                 CheckResponse(insertResponse);
             }
 
+            _output.WriteLine($"Search init data indexes to index {this.DefaultIndex}");
             this.RefreshIndex();
         }
 
@@ -110,6 +111,7 @@ namespace Elasticsearch.Powershell.Tests
 
             while(found < response.Total)
             {
+                _output.WriteLine($"Searching with scroll id {response.ScrollId}");
                 var cmdlet2 = this.CreateCmdLet<ElasticSearch>();
                 cmdlet2.ScrollId = response.ScrollId;
                 var response2 = GetResponse(cmdlet2);
