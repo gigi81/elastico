@@ -20,8 +20,14 @@ steps:
 - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-PowerShellModule-Task.VersionPowerShellModule@2
   displayName: 'Version PowerShell Modules'
 
+- task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: '>=4.3.0'
+
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
+  inputs:
+    command: 'restore'
 
 - task: MSBuild@1
   inputs:
