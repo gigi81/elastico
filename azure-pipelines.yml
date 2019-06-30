@@ -23,7 +23,7 @@ resources:
     - 30006:9200
 
 pool:
-  name: Hosted VS2017
+  name: Hosted Windows 2019 with VS2019
   demands:
   - msbuild
   - visualstudio
