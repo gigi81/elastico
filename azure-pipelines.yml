@@ -4,9 +4,11 @@ variables:
   buildConfiguration: Release
 
 resources:
-- repo: self
-  clean: true
-- containers:
+  repositories:
+  - repository: self
+    clean: true
+  
+  containers:
   - container: es2
     image: elasticsearch:2.4.6
     ports:
