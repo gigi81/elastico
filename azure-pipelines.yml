@@ -35,12 +35,6 @@ steps:
     platform: Any CPU
     configuration: $(buildConfiguration)
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
-
 - task: VSTest@2
   displayName: 'VsTest - testAssemblies'
   inputs:
