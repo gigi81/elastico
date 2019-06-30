@@ -13,9 +13,11 @@ resources:
     - 30002:9200
   - container: es5
     image: elasticsearch:5.6.16
+    ports:
     - 30005:9200
   - container: es6
     image: elasticsearch:6.8.1
+    ports:
     - 30006:9200
 
 pool:
