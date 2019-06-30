@@ -6,12 +6,28 @@ variables:
 resources:
 - repo: self
   clean: true
+- containers:
+  - container: es2
+    image: elasticsearch:2.4.6
+    ports:
+    - 30002:9200
+  - container: es5
+    image: elasticsearch:5.6.16
+    - 30005:9200
+  - container: es6
+    image: elasticsearch:6.8.1
+    - 30006:9200
 
 pool:
   name: Hosted VS2017
   demands:
   - msbuild
   - visualstudio
+
+services:
+  es2: es2
+  es5: es5
+  es6: es6
 
 steps:
 - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
