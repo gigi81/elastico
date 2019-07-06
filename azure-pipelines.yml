@@ -10,17 +10,21 @@ resources:
   
   containers:
   - container: es2
-    image: elasticsearch:2.4.6
+    image: gigi81/elasticsearch-windows:2.4.5-windowsservercore-1809
     ports:
     - 30002:9200
   - container: es5
-    image: elasticsearch:5.6.16
+    image: gigi81/elasticsearch-windows:5.6.15-windowsservercore-1809
     ports:
     - 30005:9200
   - container: es6
-    image: elasticsearch:6.8.1
+    image: gigi81/elasticsearch-windows:6.8.1-windowsservercore-1809
     ports:
     - 30006:9200
+  - container: es7
+    image: gigi81/elasticsearch-windows:7.2.0-windowsservercore-1809
+    ports:
+    - 30007:9200
 
 pool:
   name: Hosted Windows 2019 with VS2019
