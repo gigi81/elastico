@@ -36,6 +36,7 @@ services:
   es2: es2
   es5: es5
   es6: es6
+  es7: es7
 
 steps:
 - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
