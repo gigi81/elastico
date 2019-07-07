@@ -7,10 +7,6 @@ resources:
   repositories:
   - repository: self
     clean: true
-  - repository: psDoc
-    type: github
-    name: ChaseFlorell/psDoc
-    endpoint: gigi81
 
   containers:
   - container: es2
@@ -44,10 +40,7 @@ services:
 
 steps:
 - checkout: self
-
-- checkout: psDoc
-  path: psDoc
-  clean: true
+  submodules: true
 
 - task: NuGetToolInstaller@0
   inputs:
