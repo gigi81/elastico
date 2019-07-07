@@ -1,3 +1,4 @@
+![PowerShell Gallery](https://img.shields.io/powershellgallery/v/elastico.svg?style=flat)
 [![Build Status](https://luigigrilli.visualstudio.com/elastico/_apis/build/status/gigi81.elastico?branchName=master)](https://luigigrilli.visualstudio.com/elastico/_build/latest?definitionId=7&branchName=master)
 
 # Elastico
