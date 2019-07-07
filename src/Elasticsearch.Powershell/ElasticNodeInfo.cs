@@ -17,7 +17,11 @@ namespace Elasticsearch.Powershell
             if (this.InputObject != null)
                 this.ConnectionSettings = this.InputObject.ConnectionSettings;
 
+#if ESV2 || ESV5 || ESV6
             var nodes = this.Client.NodesInfo();
+#else
+            var nodes = this.Client.Nodes.Info();
+#endif
             this.CheckResponse(nodes);
 
             foreach (var node in nodes.Nodes.Values)

@@ -4,17 +4,30 @@ ModuleVersion = '1.0.0'
 GUID = 'bd4390dc-a8ad-4bce-8d69-f53ccf8e4163'
 Author = 'Luigi Grilli'
 CompanyName = 'Luigi Grilli'
-Copyright = 'Copyright (c) 2017 Luigi Grilli. All rights reserved.'
+Copyright = 'Copyright (c) 2017 - 2019 Luigi Grilli. All rights reserved.'
 Description = 'Powershell module for working with elasticsearch clusters'
 PowerShellVersion = '4.0'
-DotNetFrameworkVersion = '4.5.2'
+DotNetFrameworkVersion = '4.6.1'
 CLRVersion = '4.0'
+
+CompatiblePSEditions = @('Desktop', 'Core')
+
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = @(
-    'bin\V2\Elasticsearch.Powershell.V2.dll',
-    'bin\V5\Elasticsearch.Powershell.V5.dll',
-	'bin\V6\Elasticsearch.Powershell.V6.dll'
-)
+NestedModules = if($PSEdition -eq 'Core')
+{
+    'coreclr\V2\Elasticsearch.Powershell.V2.dll',
+    'coreclr\V5\Elasticsearch.Powershell.V5.dll',
+    'coreclr\V6\Elasticsearch.Powershell.V6.dll',
+    'coreclr\V7\Elasticsearch.Powershell.V7.dll'
+}
+else # Desktop
+{
+    'clr\V2\Elasticsearch.Powershell.V2.dll',
+    'clr\V5\Elasticsearch.Powershell.V5.dll',
+    'clr\V6\Elasticsearch.Powershell.V6.dll',
+    'clr\V7\Elasticsearch.Powershell.V7.dll'
+}
+
 # HelpInfo URI of this module
 HelpInfoURI = 'http://www.github.com/gigi81/elastico'
 

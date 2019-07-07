@@ -15,7 +15,11 @@ namespace Elasticsearch.Powershell.IndexCmdLets
 
         protected override void ProcessRecord()
         {
+#if ESV2 || ESV5 || ESV6
             var response = this.Client.GetIndexSettings(r => r.Index(this.Index));
+#else
+            var response = this.Client.Indices.GetSettings(this.Index);
+#endif
             this.CheckResponse(response);
 
             foreach (var state in response.Indices.Values)

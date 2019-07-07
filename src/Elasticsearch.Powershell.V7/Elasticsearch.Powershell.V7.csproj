@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
       <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-		  <DefineConstants>ESV6</DefineConstants>
+		  <DefineConstants>ESV7</DefineConstants>
 		  <NoWarn>1701;1702;1705;1591</NoWarn>
-		  <DocumentationFile>bin\Elasticsearch.Powershell.V6.xml</DocumentationFile>
+		  <DocumentationFile>bin\Elasticsearch.Powershell.V7.xml</DocumentationFile>
     </PropertyGroup>
 	
     <ItemGroup>
@@ -11,7 +11,7 @@
     </ItemGroup>
 	
     <ItemGroup>
-      <PackageReference Include="NEST" Version="6.*" />
+      <PackageReference Include="NEST" Version="7.*" />
       <PackageReference Include="System.Management.Automation.dll" Version="10.0.10586" Condition="$(targetFramework) == 'net461'">
         <PrivateAssets>All</PrivateAssets>
       </PackageReference>
@@ -22,5 +22,5 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-    </ItemGroup>
+    </ItemGroup>	
 </Project>

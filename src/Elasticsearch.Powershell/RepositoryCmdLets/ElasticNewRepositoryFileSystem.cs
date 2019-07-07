@@ -44,11 +44,17 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
                 Repository = new FileSystemRepository(this.GetSettings())
             };
 
+#if ESV2 || ESV5 || ESV6
             var response = this.Client.CreateRepository(request);
             CheckResponse(response);
-
             //get repository
             var response1 = this.Client.GetRepository(new GetRepositoryRequest(this.Name));
+#else
+            var response = this.Client.Snapshot.CreateRepository(request);
+            CheckResponse(response);
+            //get repository
+            var response1 = this.Client.Snapshot.GetRepository(new GetRepositoryRequest(this.Name));
+#endif
             CheckResponse(response1);
 
             foreach (var repo in response1.Repositories.Keys)

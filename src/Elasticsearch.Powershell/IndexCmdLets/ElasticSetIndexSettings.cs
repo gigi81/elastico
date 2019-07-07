@@ -27,7 +27,11 @@ namespace Elasticsearch.Powershell.IndexCmdLets
                 IndexSettings = new DynamicIndexSettings(this.Settings.ToDictionary())
             };
 
+#if ESV2 || ESV5 || ESV6
             var response = this.Client.UpdateIndexSettings(request);
+#else
+            var response = this.Client.Indices.UpdateSettings(request);
+#endif
             this.CheckResponse(response);
         }
     }

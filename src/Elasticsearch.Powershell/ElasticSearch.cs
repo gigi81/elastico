@@ -73,7 +73,9 @@ namespace Elasticsearch.Powershell
         private void SearchInternal()
         {
             var search = new SearchDescriptor<ExpandoObject>()
+#if ESV2 || ESV5 || ESV6
                                  .AllTypes()
+#endif
                                  .Index(GetIndices(this.Index))
                                  .From(this.From)
                                  .Size(this.Size);

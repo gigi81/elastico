@@ -16,10 +16,16 @@ namespace Elasticsearch.Powershell.IndexCmdLets
 
         protected override void ProcessRecord()
         {
+#if ESV2 || ESV5 || ESV6
             var create = this.Client.CreateIndex(this.Index);
             this.CheckResponse(create);
-
             var cat = this.Client.CatIndices(new CatIndicesRequest(this.Index));
+#else
+            var create = this.Client.Indices.Create(this.Index);
+            this.CheckResponse(create);
+            var cat = this.Client.Cat.Indices(new CatIndicesRequest(this.Index));
+#endif
+
             this.CheckResponse(cat);
             WriteObject(new Types.Index(cat.Records.First()));
         }
