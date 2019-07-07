@@ -7,7 +7,10 @@ resources:
   repositories:
   - repository: self
     clean: true
-  
+  - repository: psDoc
+    type: github
+    name: ChaseFlorell/psDoc
+
   containers:
   - container: es2
     image: gigi81/elasticsearch-windows:2.4.5-windowsservercore-1809
@@ -39,32 +42,26 @@ services:
   es7: es7
 
 steps:
-- task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
-  displayName: 'Version .NET Core Assemblies'
+- checkout: self
 
-- task: richardfennellBM.BM-VSTS-Versioning-Task.Version-PowerShellModule-Task.VersionPowerShellModule@2
-  displayName: 'Version PowerShell Modules'
+- checkout: psDoc
+  path: psDoc
+  clean: true
 
 - task: NuGetToolInstaller@0
   inputs:
     versionSpec: '>=4.3.0'
 
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
+- task: BatchScript@1
+  displayName: 'Build'
   inputs:
-    command: 'restore'
-
-- task: MSBuild@1
-  inputs:
-    solution: Elasticsearch.Powershell.sln
-    platform: Any CPU
-    configuration: $(buildConfiguration)
-
+    filename: build.bat
+    
 - task: VSTest@2
   displayName: 'VsTest - testAssemblies'
   inputs:
     testAssemblyVer2: |
-     **\*tests*.dll
+     **\*.Tests*.dll
      !**\*TestAdapter.dll
      !**\obj\**
 
