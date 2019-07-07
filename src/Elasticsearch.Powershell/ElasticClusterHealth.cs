@@ -13,7 +13,11 @@ namespace Elasticsearch.Powershell
 
         protected override void ProcessRecord()
         {
+#if ESV2 || ESV5 || ESV6
             var health = this.Client.ClusterHealth(h => h.Index(GetIndices(this.Index)));
+#else
+            var health = this.Client.Cluster.Health(GetIndices(this.Index));
+#endif
             this.CheckResponse(health);
 
             WriteObject(new Types.Cluster

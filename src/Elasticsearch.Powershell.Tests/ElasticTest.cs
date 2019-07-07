@@ -10,14 +10,12 @@ namespace Elasticsearch.Powershell.Tests
     {
         protected readonly ITestOutputHelper _output;
 
-        private readonly ElasticsearchInside.Elasticsearch _server;
         private ElasticClient _client;
         private string _index = "searchtests" + Guid.NewGuid();
 
         protected ElasticTest(ITestOutputHelper outputHelper)
         {
             _output = outputHelper;
-            _server = new ElasticsearchInside.Elasticsearch(c => c.EnableLogging().LogTo(this.WriteToLog));
         }
 
         private void WriteToLog(string message)
@@ -38,7 +36,23 @@ namespace Elasticsearch.Powershell.Tests
 
         public Uri ServerUrl
         {
-            get { return _server.Url; }
+            get { return new Uri("http://localhost:" + this.Port); }
+        }
+
+        public int Port
+        {
+            get
+            {
+#if ESV2
+                return 30002;
+#elif ESV5
+                return 30005;
+#elif ESV6
+                return 30006;
+#elif ESV7
+                return 30007;
+#endif
+            }
         }
 
         public string[] Node
@@ -89,34 +103,23 @@ namespace Elasticsearch.Powershell.Tests
         /// </summary>
         protected void RefreshIndex()
         {
+#if ESV2 || ESV5 || ESV6
             this.Client.Refresh(this.DefaultIndex);
+#else
+            this.Client.Indices.Refresh(this.DefaultIndex);
+#endif
         }
 
-#if ESV2
-        public Task InitializeAsync()
-        {
-            return Task.Run(() => this.Init());
-        }
-#else
         public async Task InitializeAsync()
         {
-            await _server.Ready();
             await Task.Run(() => this.Init());
         }
-#endif
 
         public Task DisposeAsync()
         {
             return Task.Run(() =>
             {
-                try
-                {
-                    this.DisposeInternal();
-                }
-                finally
-                {
-                    _server.Dispose();
-                }
+                this.DisposeInternal();
             });
         }
     }

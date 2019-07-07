@@ -20,7 +20,11 @@ namespace Elasticsearch.Powershell.SnapshotCmdLets
         {
             foreach(var name in this.Name)
             {
+#if ESV2 || ESV5 || ESV6
                 var response = this.Client.DeleteSnapshot(this.Repository, name);
+#else
+                var response = this.Client.Snapshot.Delete(this.Repository, name);
+#endif
                 CheckResponse(response);
             }
         }

@@ -18,7 +18,11 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
             if (this.Repository == null || this.Repository.Length == 0)
                 return;
 
+#if ESV2 || ESV5 || ESV6
             var response = this.Client.DeleteRepository(Names.Parse(String.Join(",", this.Repository)));
+#else
+            var response = this.Client.Snapshot.DeleteRepository(Names.Parse(String.Join(",", this.Repository)));
+#endif
             CheckResponse(response);
         }
     }

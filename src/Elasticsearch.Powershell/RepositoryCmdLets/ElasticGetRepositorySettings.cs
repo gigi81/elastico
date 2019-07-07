@@ -13,7 +13,11 @@ namespace Elasticsearch.Powershell.RepositoryCmdLets
     {
         protected override void ProcessRecord()
         {
+#if ESV2 || ESV5 || ESV6
             var response = this.Client.GetRepository(this.GetRequest);
+#else
+            var response = this.Client.Snapshot.GetRepository(this.GetRequest);
+#endif
             CheckResponse(response);
 
             foreach (var repo in response.Repositories.Keys)

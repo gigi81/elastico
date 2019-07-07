@@ -35,7 +35,11 @@ namespace Elasticsearch.Powershell.IndexCmdLets
             if (indices == null)
                 return;
 
+#if ESV2 || ESV5 || ESV6
             var delete = this.Client.DeleteIndex(indices);
+#else
+            var delete = this.Client.Indices.Delete(indices);
+#endif
             this.CheckResponse(delete);
         }
     }

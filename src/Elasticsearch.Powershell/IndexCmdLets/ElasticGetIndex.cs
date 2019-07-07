@@ -16,7 +16,11 @@ namespace Elasticsearch.Powershell.IndexCmdLets
         protected override void ProcessRecord()
         {
             var request = new CatIndicesRequest(GetIndices(this.Index));
+#if ESV2 || ESV5 || ESV6
             var cat = this.Client.CatIndices(request);
+#else
+            var cat = this.Client.Cat.Indices(request);
+#endif
 
             this.CheckResponse(cat);
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
       <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-		  <DefineConstants>ESV2</DefineConstants>
+	    <DefineConstants>ESV7</DefineConstants>
     </PropertyGroup>
 	
     <ItemGroup>
@@ -9,13 +9,12 @@
     </ItemGroup>
 	
     <ItemGroup>
-      <PackageReference Include="NEST" Version="2.*" />
+      <PackageReference Include="NEST" Version="7.*" />
       <PackageReference Include="PowerShellStandard.Library" Version="5.1.0" />
-      <PackageReference Include="xunit" Version="2.*" />
-      <PackageReference Include="xunit.runner.visualstudio" Version="2.*" />
+      <PackageReference Include="xunit" Version="2.4.1" />
     </ItemGroup>
 	
-    <ItemGroup>
-      <ProjectReference Include="..\Elasticsearch.Powershell.V2\Elasticsearch.Powershell.V2.csproj" />
+	<ItemGroup>
+      <ProjectReference Include="..\Elasticsearch.Powershell.V7\Elasticsearch.Powershell.V7.csproj" />
     </ItemGroup>
 </Project>

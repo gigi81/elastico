@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
-		<DefineConstants>ESV5</DefineConstants>
-		<NoWarn>1701;1702;1705;1591</NoWarn>
-		<DocumentationFile>bin\Elasticsearch.Powershell.V5.xml</DocumentationFile>
-		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+      <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+		  <DefineConstants>ESV5</DefineConstants>
+		  <NoWarn>1701;1702;1705;1591</NoWarn>
+		  <DocumentationFile>bin\Elasticsearch.Powershell.V5.xml</DocumentationFile>
     </PropertyGroup>
 	
     <ItemGroup>
@@ -13,18 +12,15 @@
 	
     <ItemGroup>
       <PackageReference Include="NEST" Version="5.*" />
-	    <PackageReference Include="PowerShellStandard.Library" Version="5.1.0" />
+      <PackageReference Include="System.Management.Automation.dll" Version="10.0.10586" Condition="$(targetFramework) == 'net461'">
+        <PrivateAssets>All</PrivateAssets>
+      </PackageReference>
+      <PackageReference Include="PowerShellStandard.Library" Version="5.1.0" Condition="$(targetFramework) == 'netstandard2.0'">
+        <PrivateAssets>All</PrivateAssets>
+      </PackageReference>
       <PackageReference Include="XmlDoc2CmdletDoc" Version="0.2.12">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
     </ItemGroup>
-	
-	<Target Name="CopyToModuleFolder" BeforeTargets="AfterBuild" Condition="$(Configuration) == 'Release'">
-	  <ItemGroup>
-	  	<ModuleFiles Include="$(OutputPath)*.dll;$(OutputPath)*-Help.xml" Exclude="$(OutputPath)System*.dll;$(OutputPath)Microsoft*.dll" />
-	  </ItemGroup>
-
-	  <Copy SourceFiles="@(ModuleFiles)" DestinationFolder="$(SolutionDir)Elastico\bin\V5" />
-	</Target>
 </Project>

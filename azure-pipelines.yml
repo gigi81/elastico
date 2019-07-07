@@ -1,0 +1,68 @@
+name: 1.0.2$(Rev:.r)
+
+variables:
+  buildConfiguration: Release
+
+resources:
+  repositories:
+  - repository: self
+    clean: true
+
+  containers:
+  - container: es2
+    image: gigi81/elasticsearch-windows:2.4.5-windowsservercore-1809
+    ports:
+    - 30002:9200
+  - container: es5
+    image: gigi81/elasticsearch-windows:5.6.15-windowsservercore-1809
+    ports:
+    - 30005:9200
+  - container: es6
+    image: gigi81/elasticsearch-windows:6.8.1-windowsservercore-1809
+    ports:
+    - 30006:9200
+  - container: es7
+    image: gigi81/elasticsearch-windows:7.2.0-windowsservercore-1809
+    ports:
+    - 30007:9200
+
+pool:
+  name: Hosted Windows 2019 with VS2019
+  demands:
+  - msbuild
+  - visualstudio
+
+services:
+  es2: es2
+  es5: es5
+  es6: es6
+  es7: es7
+
+steps:
+- checkout: self
+  submodules: true
+
+- task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: '>=4.3.0'
+
+- task: BatchScript@1
+  displayName: 'Build'
+  inputs:
+    filename: build.bat
+    
+- task: VSTest@2
+  displayName: 'VsTest - testAssemblies'
+  inputs:
+    testAssemblyVer2: |
+     **\*.Tests*.dll
+     !**\*TestAdapter.dll
+     !**\obj\**
+
+- powershell: .\deploy.ps1
+  displayName: 'Deploy'
+  env:
+    powershellgallery_apikey: $(powershellgallery_apikey)
+
+- powershell: .\generate-doc.ps1
+  displayName: 'Generate documentation'

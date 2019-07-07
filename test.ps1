@@ -3,11 +3,14 @@ $nodes = @(
     "http://localhost:9200"
 )
 
+Get-ElasticV2ClusterHealth
+Get-ElasticV5ClusterHealth
+Get-ElasticV6ClusterHealth
+Get-ElasticV7ClusterHealth
+
 # Get-Command -Module Elastico | Format-Table -Property Name,Version
 
 # Get-Help Get-ElasticV2ClusterHealth
-
-Get-ElasticV2ClusterHealth -Verbose
 
 # Get-ElasticV2ClusterHealt -Index ".kibana" -Verbose
 
@@ -52,4 +55,4 @@ Get-ElasticV2ClusterHealth -Verbose
 
 # Set-ElasticV2IndexSettings -Index ".kibana" -Settings @{ "number_of_shards" = 2 } -Verbose
 
-Get-ElasticV2IndexSettings -Index ".kibana"
+# Get-ElasticV2IndexSettings -Index ".kibana"
