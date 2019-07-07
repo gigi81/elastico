@@ -6,7 +6,7 @@ Author = 'Luigi Grilli'
 CompanyName = 'Luigi Grilli'
 Copyright = 'Copyright (c) 2017 - 2019 Luigi Grilli. All rights reserved.'
 Description = 'Powershell module for working with elasticsearch clusters'
-PowerShellVersion = '4.0'
+PowerShellVersion = '5.1'
 DotNetFrameworkVersion = '4.6.1'
 CLRVersion = '4.0'
 
