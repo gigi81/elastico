@@ -7,7 +7,7 @@ $cmdlets = (Get-Command -Module Elastico).Name
 
 if(-not [string]::IsNullOrEmpty($env:BUILD_BUILDNUMBER)){ $version = $env:BUILD_BUILDNUMBER }
 elseif(-not [string]::IsNullOrEmpty($env:APPVEYOR_BUILD_VERSION)) { $version = $env:APPVEYOR_BUILD_VERSION }
-else { $version = '1.0.0' }
+else { $version = '0.0.1' }
 
 Write-Host "Updating Manifest $version"
 $path = '.\Elastico\Elastico.psd1'
