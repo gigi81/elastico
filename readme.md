@@ -2,7 +2,7 @@
 
 # Elastico
 
-Elastico is a Powershell module that allows to perform some operations with an Elasticsearch cluster. The module can run on both Windows and Linux and runs on both legacy Powershell and Powershell core.
+Elastico is a Powershell module that allows to perform some operations with an Elasticsearch cluster. The module can run on both Windows and Linux and runs on both legacy Desktop Powershell 5.1 and Powershell core 6+
 
 Install
 ============
@@ -16,13 +16,13 @@ Features
 ============
 
 The current version of the module supports the following functionalities:
-- list/add/remove indices
-- list/add/remove repositories (for backup)
-- list/add/remove snapshots (for backup)
 - get cluster health
 - get cluster info
 - search
 - get/set index settings
+- list/add/remove indices
+- list/add/remove repositories (for backup)
+- list/add/remove snapshots (for backup)
 
 Documentation
 ============
