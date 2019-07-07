@@ -10,6 +10,7 @@ resources:
   - repository: psDoc
     type: github
     name: ChaseFlorell/psDoc
+    endpoint: gigi81
 
   containers:
   - container: es2
