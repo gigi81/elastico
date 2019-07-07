@@ -10,8 +10,9 @@ elseif(-not [string]::IsNullOrEmpty($env:APPVEYOR_BUILD_VERSION)) { $version = $
 else { $version = '1.0.0' }
 
 Write-Host "Updating Manifest $version"
-Update-ModuleManifest -Path .\Elastico\Elastico.psd1 -ModuleVersion $version
-Update-ModuleManifest -Path .\Elastico\Elastico.psd1 -CmdletsToExport $cmdlets
+$path = '.\Elastico\Elastico.psd1'
+(Get-Content -Path $path).Replace("ModuleVersion = '1.0.0'", "ModuleVersion = '$version'") | Set-Content -Path $path
+#Update-ModuleManifest -Path  -ModuleVersion $version -CmdletsToExport $cmdlets
 
 if($env:APPVEYOR_REPO_BRANCH -eq 'stable' -or $env:BUILD_SOURCEBRANCHNAME -eq 'stable')
 {

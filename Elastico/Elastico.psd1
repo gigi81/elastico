@@ -59,7 +59,36 @@ HelpInfoURI = 'http://www.github.com/gigi81/elastico'
 FunctionsToExport = ''
 
 # Cmdlets to export from this module
-CmdletsToExport = '*'
+CmdletsToExport = 'Get-ElasticV2ClusterHealth', 'Get-ElasticV2Index', 
+               'Get-ElasticV2IndexSettings', 'Get-ElasticV2NodeInfo', 
+               'Get-ElasticV2Repository', 'Get-ElasticV2RepositorySettings', 
+               'Get-ElasticV2Snapshot', 'Get-ElasticV5ClusterHealth', 
+               'Get-ElasticV5Index', 'Get-ElasticV5IndexSettings', 
+               'Get-ElasticV5NodeInfo', 'Get-ElasticV5Repository', 
+               'Get-ElasticV5RepositorySettings', 'Get-ElasticV5Snapshot', 
+               'Get-ElasticV6ClusterHealth', 'Get-ElasticV6Index', 
+               'Get-ElasticV6IndexSettings', 'Get-ElasticV6NodeInfo', 
+               'Get-ElasticV6Repository', 'Get-ElasticV6RepositorySettings', 
+               'Get-ElasticV6Snapshot', 'Get-ElasticV7ClusterHealth', 
+               'Get-ElasticV7Index', 'Get-ElasticV7IndexSettings', 
+               'Get-ElasticV7NodeInfo', 'Get-ElasticV7Repository', 
+               'Get-ElasticV7RepositorySettings', 'Get-ElasticV7Snapshot', 
+               'New-ElasticV2Index', 'New-ElasticV2RepositoryFileSystem', 
+               'New-ElasticV2Snapshot', 'New-ElasticV5Index', 
+               'New-ElasticV5RepositoryFileSystem', 'New-ElasticV5Snapshot', 
+               'New-ElasticV6Index', 'New-ElasticV6RepositoryFileSystem', 
+               'New-ElasticV6Snapshot', 'New-ElasticV7Index', 
+               'New-ElasticV7RepositoryFileSystem', 'New-ElasticV7Snapshot', 
+               'Remove-ElasticV2Index', 'Remove-ElasticV2Repository', 
+               'Remove-ElasticV2Snapshot', 'Remove-ElasticV5Index', 
+               'Remove-ElasticV5Repository', 'Remove-ElasticV5Snapshot', 
+               'Remove-ElasticV6Index', 'Remove-ElasticV6Repository', 
+               'Remove-ElasticV6Snapshot', 'Remove-ElasticV7Index', 
+               'Remove-ElasticV7Repository', 'Remove-ElasticV7Snapshot', 
+               'Search-ElasticV2', 'Search-ElasticV5', 'Search-ElasticV6', 
+               'Search-ElasticV7', 'Set-ElasticV2IndexSettings', 
+               'Set-ElasticV5IndexSettings', 'Set-ElasticV6IndexSettings', 
+               'Set-ElasticV7IndexSettings'
 
 # Variables to export from this module
 VariablesToExport = '*'
