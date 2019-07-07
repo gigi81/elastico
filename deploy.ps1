@@ -16,6 +16,6 @@ $path = '.\Elastico\Elastico.psd1'
 
 if($env:APPVEYOR_REPO_BRANCH -eq 'stable' -or $env:BUILD_SOURCEBRANCHNAME -eq 'stable')
 {
-    Write-Host "Deploying module Elastico v$($env:APPVEYOR_BUILD_VERSION) to powershellgallery"
+    Write-Host "Deploying module Elastico $version to powershellgallery"
     Publish-Module -Path .\Elastico -NuGetApiKey "$($env:powershellgallery_apikey)"
 }
