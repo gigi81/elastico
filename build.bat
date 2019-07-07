@@ -13,3 +13,7 @@ dotnet publish src\Elasticsearch.Powershell.V2\Elasticsearch.Powershell.V2.cspro
 dotnet publish src\Elasticsearch.Powershell.V5\Elasticsearch.Powershell.V5.csproj -c Release -o ..\..\Elastico\clr\V5 -f net461
 dotnet publish src\Elasticsearch.Powershell.V6\Elasticsearch.Powershell.V6.csproj -c Release -o ..\..\Elastico\clr\V6 -f net461
 dotnet publish src\Elasticsearch.Powershell.V7\Elasticsearch.Powershell.V7.csproj -c Release -o ..\..\Elastico\clr\V7 -f net461
+
+cd Elastico
+del /S System.Management.Automation.dll
+cd ..

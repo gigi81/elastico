@@ -12,7 +12,7 @@ else { $version = '0.0.1' }
 Write-Host "Updating Manifest $version"
 $path = '.\Elastico\Elastico.psd1'
 (Get-Content -Path $path).Replace("ModuleVersion = '1.0.0'", "ModuleVersion = '$version'") | Set-Content -Path $path
-#Update-ModuleManifest -Path  -ModuleVersion $version -CmdletsToExport $cmdlets
+#Update-ModuleManifest -Path $path -ModuleVersion $version -CmdletsToExport $cmdlets
 
 if($env:APPVEYOR_REPO_BRANCH -eq 'stable' -or $env:BUILD_SOURCEBRANCHNAME -eq 'stable')
 {
