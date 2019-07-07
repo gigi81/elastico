@@ -59,14 +59,10 @@ steps:
      !**\*TestAdapter.dll
      !**\obj\**
 
-- task: PowerShell@2
-  inputs:
-    targetType: filePath
-    filePath: deploy.ps1
-    env:
-      powershellgallery_apikey: $(powershellgallery_apikey)
+- powershell: .\deploy.ps1
+  displayName: 'Deploy'
+  env:
+    powershellgallery_apikey: $(powershellgallery_apikey)
 
-- task: PowerShell@2
-  inputs:
-    targetType: filePath
-    filePath: generate-doc.ps1
+- powershell: .\generate-doc.ps1
+  displayName: 'Generate documentation'
