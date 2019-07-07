@@ -1,5 +1,4 @@
-[![Build status master](https://img.shields.io/appveyor/ci/gigi81/elastico/master.svg?label=master)](https://ci.appveyor.com/project/gigi81/elastico/branch/master)
-[![Build status stable](https://img.shields.io/appveyor/ci/gigi81/elastico/stable.svg?label=stable)](https://ci.appveyor.com/project/gigi81/elastico/branch/stable)
+[![Build Status](https://luigigrilli.visualstudio.com/elastico/_apis/build/status/gigi81.elastico?branchName=master)](https://luigigrilli.visualstudio.com/elastico/_build/latest?definitionId=7&branchName=master)
 
 # Elastico
 
@@ -8,7 +7,7 @@ Elastico is a Powershell module that allows to perform some operations with an E
 Install
 ============
 
-You can install the module from the command line by running the following command:
+You can install the module from the [powershell gallery](https://www.powershellgallery.com/packages/Elastico) from the command line by running the following command:
 ```powershell
 Install-Module Elastico
 ```
@@ -33,18 +32,26 @@ Documentation is available on [github pages](https://gigi81.github.io/elastico/#
 Elasticsearch Versions(s) Compatibility
 ============
 
-The module supports versions 2, 5 and 6 of elasticsearch.
+The module supports versions 2, 5, 6 and 7 of elasticsearch.
 
 Because the server API can change between versions, for compatibility reasons, the cmdlets are specific to each single version of elasticsearch supported.
 
 So for example, instead of having a single Get-ElasticClusterHealt cmdlet, there are 3 cmdlets, more specifically:
 - Get-ElasticV2ClusterHealth
 - Get-ElasticV5ClusterHealth
-- Get-ElasticV6ClusterHealth.
+- Get-ElasticV6ClusterHealth
+- Get-ElasticV7ClusterHealth
 
 In order to avoid compatibility issues, you will need to know in advance the version of elasticsearch that you are dealing with, and use the relevant cmdlet.
 
 Support for version 1 of Elasticsearch has been dropped, but you can still download an older version of the module (0.6.x) if you need to connect to an elasticsearch v1.
+
+---
+**NOTE**
+
+When using the module in powershell core, once you start using a version of the cmdlets, you cannot switch to another version as you will get an error (ex if you use V6 cmdlet and then start using a V7 cmdlets). You will need to close the current powershell session or start a new session.
+This is a know issue and there is no planned fix as this is by design of powershell core.
+---
 
 
 Usage Examples
