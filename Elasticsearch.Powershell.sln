@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Elasticsearch.Powershell", "src\Elasticsearch.Powershell\Elasticsearch.Powershell.shproj", "{E0EAF9B3-3292-4070-A138-33963DD0297C}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Elasticsearch.Powershell.Tests", "src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.shproj", "{81107053-A24F-4415-8FD4-AEDF79622FB0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elasticsearch.Powershell.V2", "src\Elasticsearch.Powershell.V2\Elasticsearch.Powershell.V2.csproj", "{8AADCAE0-6C3E-4043-BBBC-6836B5F287D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elasticsearch.Powershell.Tests.V2", "src\Elasticsearch.Powershell.Tests.V2\Elasticsearch.Powershell.Tests.V2.csproj", "{7E53B638-0F5D-4773-BD38-1AF9C16B5114}"
@@ -24,14 +20,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elasticsearch.Powershell.V7", "src\Elasticsearch.Powershell.V7\Elasticsearch.Powershell.V7.csproj", "{8C0837A3-5356-48AB-9E6A-8706BD858C77}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{0a53b22b-b778-48b5-a654-e00a7433cbce}*SharedItemsImports = 4
-		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{7e53b638-0f5d-4773-bd38-1af9c16b5114}*SharedItemsImports = 4
-		src\Elasticsearch.Powershell\Elasticsearch.Powershell.projitems*{80f98539-3d66-459c-b625-b219c3919e3d}*SharedItemsImports = 4
-		src\Elasticsearch.Powershell.Tests\Elasticsearch.Powershell.Tests.projitems*{81107053-a24f-4415-8fd4-aedf79622fb0}*SharedItemsImports = 13
-		src\Elasticsearch.Powershell\Elasticsearch.Powershell.projitems*{8aadcae0-6c3e-4043-bbbc-6836b5f287d0}*SharedItemsImports = 4
-		src\Elasticsearch.Powershell\Elasticsearch.Powershell.projitems*{e0eaf9b3-3292-4070-a138-33963dd0297c}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
